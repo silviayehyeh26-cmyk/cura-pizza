@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#f3eee5;
+
+    font-family:sans-serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+}
+
+#app{
+
+    width:380px;
+
+    text-align:center;
+
+}
+
+h1{
+
+    margin-bottom:40px;
+
+}
+
+.npc-image{
+
+    font-size:100px;
+
+    margin-bottom:20px;
+
+}
+
+#npc{
+
+    margin-bottom:40px;
+
+}
+
+button{
+
+    padding:14px 40px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
