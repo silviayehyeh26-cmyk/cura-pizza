@@ -158,6 +158,11 @@ cursor:pointer;
 
 padding:0;
 
+.menu-btn {
+position:relative;
+z-index:30;
+}
+
 }
 
 
@@ -227,6 +232,8 @@ transition:0.3s;
 
 opacity:0.6;
 
+transform:translateX(10px);
+
 }
 
 .menu-panel {
@@ -243,7 +250,7 @@ height:100vh;
 
 background:#211814;
 
-z-index:8;
+z-index:20;
 
 padding:80px 40px;
 
@@ -263,8 +270,6 @@ font-size:40px;
 
 .menu-panel a {
 
-display:block;
-
 color:#f5e6c8;
 
 text-decoration:none;
@@ -272,5 +277,15 @@ text-decoration:none;
 font-size:24px;
 
 margin:30px 0;
+
+transition:0.3s;
+
+}
+
+.menu-panel a:hover {
+
+opacity:0.6;
+
+transform:translateX(10px);
 
 }
