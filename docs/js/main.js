@@ -15,4 +15,6 @@ menuBtn.addEventListener("click",()=>{
 
 menuPanel.classList.toggle("active");
 
+menuBtn.classList.toggle("close");
+
 });
