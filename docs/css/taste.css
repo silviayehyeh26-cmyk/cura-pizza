@@ -1,0 +1,99 @@
+body{
+
+    margin:0;
+
+    background:#F5F0E6;
+
+    font-family:"Noto Sans TC",sans-serif;
+
+}
+
+.taste-container{
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.hero{
+
+    width:700px;
+
+    text-align:center;
+
+}
+
+.logo{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    color:#A9473A;
+
+}
+
+.hero h1{
+
+    margin-top:25px;
+
+    font-size:42px;
+
+}
+
+.hero p{
+
+    margin-top:20px;
+
+    line-height:2;
+
+    color:#666;
+
+}
+
+.hero-buttons{
+
+    margin-top:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+.hero-buttons button{
+
+    padding:16px 36px;
+
+    border:none;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+#startTaste{
+
+    background:#A9473A;
+
+    color:white;
+
+}
+
+.secondary{
+
+    background:#EFE7DA;
+
+}

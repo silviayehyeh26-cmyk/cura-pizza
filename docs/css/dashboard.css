@@ -1,0 +1,954 @@
+/* ===========================
+   CURA DASHBOARD SYSTEM
+=========================== */
+
+
+/* ---------- Base ---------- */
+
+*{
+    box-sizing:border-box;
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:
+    "Noto Sans TC",
+    "Inter",
+    sans-serif;
+
+    background:#F5F0E6;
+
+    color:#252525;
+
+}
+
+
+
+/* ---------- Layout ---------- */
+
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+
+/* ---------- Sidebar ---------- */
+
+
+.sidebar{
+
+
+    width:240px;
+
+    background:#252525;
+
+    color:#F5F0E6;
+
+    padding:35px 25px;
+
+
+    position:fixed;
+
+    height:100vh;
+
+
+}
+
+
+
+.dashboard-logo{
+
+
+    font-size:32px;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+
+}
+
+
+
+
+.sidebar nav{
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+
+}
+
+
+
+.sidebar a{
+
+
+    color:#F5F0E6;
+
+    text-decoration:none;
+
+
+    padding:12px 15px;
+
+
+    border-radius:12px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+.sidebar a:hover{
+
+
+    background:#A9473A;
+
+
+}
+
+
+
+
+
+/* ---------- Main ---------- */
+
+
+.dashboard-main{
+
+
+    margin-left:240px;
+
+    width:calc(100% - 240px);
+
+    padding:45px;
+
+
+}
+
+
+
+
+/* ---------- Header ---------- */
+
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:35px;
+
+}
+
+.header-right{
+
+    text-align:right;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.dashboard-meta{
+
+    font-size:14px;
+
+    color:#666;
+
+}
+
+.store-status{
+
+    color:#4B6A42;
+
+}
+
+
+.dashboard-header h1{
+
+
+    margin:0;
+
+    font-size:40px;
+
+    letter-spacing: 5px;
+
+
+}
+
+
+
+.dashboard-header p{
+
+
+    color:#666;
+
+}
+
+
+
+/* ---------- KPI ---------- */
+
+
+.kpi-grid{
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+
+    margin-bottom:35px;
+
+
+}
+
+
+
+.kpi-card{
+
+
+    background:#EFE7DA;
+
+
+    border-radius:22px;
+
+
+    padding:25px;
+
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+
+
+}
+
+
+
+.kpi-card span{
+
+
+    color:#666;
+
+    font-size:14px;
+
+
+}
+
+
+
+.kpi-card h2{
+
+
+    font-size:32px;
+
+    margin:15px 0;
+
+
+}
+
+
+
+.kpi-card p{
+
+
+    color:#42616a;
+
+    font-weight:bold;
+
+
+}
+
+.kpi-card h2{
+
+
+font-size:36px;
+
+
+letter-spacing:1px;
+
+
+}
+
+
+
+
+
+.kpi-card.revenue{
+
+
+border-left:
+
+5px solid #A9473A;
+
+
+}
+
+
+
+.kpi-card.orders{
+
+
+border-left:
+
+5px solid #C6A46B;
+
+
+}
+
+
+
+.kpi-card.retention{
+
+
+border-left:
+
+5px solid #2c3d84;
+
+
+}
+
+
+
+.kpi-card.sustainability{
+
+
+border-left:
+
+5px solid #3f6835;
+
+
+}
+
+/* ---------- Panel ---------- */
+
+
+.dashboard-panel{
+
+
+    background:#fff;
+
+
+    border-radius:25px;
+
+
+    padding:35px;
+
+
+    margin-bottom:35px;
+
+
+    box-shadow:
+
+    0 12px 30px rgba(0,0,0,.06);
+
+
+}
+
+
+
+.dashboard-panel h2{
+
+
+    margin-top:0;
+
+    font-size:24px;
+
+
+}
+
+.panel-description{
+
+
+color:#666;
+
+
+margin-top:-15px;
+
+
+margin-bottom:25px;
+
+
+}
+
+
+/* ---------- Radar ---------- */
+
+
+.radar-area{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:50px;
+
+
+}
+
+
+
+#tasteRadar{
+
+
+    max-width:420px;
+
+}
+
+
+
+
+
+.insight-box{
+
+
+    background:#F5F0E6;
+
+
+    border-left:
+
+    5px solid #A9473A;
+
+
+    padding:25px;
+
+
+    border-radius:15px;
+
+
+    max-width:350px;
+
+    
+   font-size:15px;
+
+
+   line-height:1.7;
+
+}
+
+
+
+
+.insight-box h3{
+
+
+    margin-top:0;
+
+}
+
+
+
+.menu-card{
+
+width:260px;
+
+padding:24px;
+
+border-radius:18px;
+
+background:#EFE7DA;
+
+transition:.3s;
+
+}
+
+.menu-card{
+
+box-shadow:
+0 8px 20px rgba(0,0,0,.05);
+
+}
+
+/* ---------- Reward ---------- */
+
+
+.reward-grid{
+
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+
+}
+
+
+
+.reward-item{
+
+
+    background:#EFE7DA;
+
+
+    padding:20px;
+
+
+    border-radius:15px;
+
+
+}
+
+.reward-item span{
+
+
+font-size:14px;
+
+opacity:.7;
+
+
+}
+
+
+
+.reward-item h2{
+
+
+font-size:32px;
+
+
+margin:8px 0;
+
+
+}
+
+
+
+.reward-status{
+
+
+margin-top:20px;
+
+
+padding:15px;
+
+
+border-radius:12px;
+
+
+background:#f3efe6;
+
+
+font-size:16px;
+
+
+}
+
+
+/* ---------- Sustainability ---------- */
+
+
+.eco-box{
+
+
+    display:flex;
+
+    gap:25px;
+
+
+}
+
+
+
+.eco-card{
+
+
+    flex:1;
+
+    background:#4B6A42;
+
+    color:white;
+
+
+    padding:25px;
+
+
+    border-radius:20px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.eco-card:hover{
+
+
+    transform:translateY(-5px);
+
+
+}
+
+
+
+.eco-card span{
+
+
+    font-size:14px;
+
+    opacity:.8;
+
+
+}
+
+
+
+.eco-card h2{
+
+
+    font-size:32px;
+
+    margin:12px 0;
+
+
+}
+
+
+
+.eco-card p{
+
+
+    margin:0;
+
+    opacity:.9;
+
+
+}
+
+
+
+/* ---------- Responsive ---------- */
+
+
+@media(max-width:1000px){
+
+
+    .kpi-grid{
+
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+
+    }
+
+
+}
+
+
+@media(max-width:700px){
+
+
+    .sidebar{
+
+
+        display:none;
+
+
+    }
+
+
+
+    .dashboard-main{
+
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:20px;
+
+
+    }
+
+
+    .kpi-grid{
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+}
+
+/* ===== Fix Layout ===== */
+
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+}
+
+
+
+.kpi-card{
+
+    background:#EFE7DA;
+
+    border-radius:22px;
+
+    padding:25px;
+
+}
+
+
+
+.radar-area{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:60px;
+
+}
+
+
+
+#tasteRadar{
+
+    width:400px!important;
+
+    height:400px!important;
+
+}
+
+
+
+.insight-box{
+
+    width:320px;
+
+}
+
+/* ===========================
+   MENU INTELLIGENCE
+=========================== */
+
+
+#menu-list{
+
+display:flex;
+
+gap:24px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+.menu-card{
+
+
+width:260px;
+
+padding:24px;
+
+
+border-radius:18px;
+
+
+background:#fff;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.menu-card:hover{
+
+
+transform:translateY(-6px);
+
+
+}
+
+
+
+.menu-card h3{
+
+
+margin-bottom:12px;
+
+
+}
+
+
+
+.menu-reason{
+
+
+opacity:.8;
+
+
+line-height:1.6;
+
+
+}
+
+
+
+.menu-sales{
+
+
+margin-top:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+
+}
+
+
+
+.menu-sales strong{
+
+
+font-size:28px;
+
+
+}
+
+
+
+.carbon-badge{
+
+
+margin-top:20px;
+
+
+padding:12px;
+
+
+border-radius:12px;
+
+
+background:#eef4e8;
+
+
+}
+
+
+
+.carbon-badge p{
+
+
+margin:6px 0 0;
+
+
+font-size:14px;
+
+
+}
+
+
+
+.menu-analyze-btn{
+
+
+margin-top:20px;
+
+padding:10px 18px;
+
+
+border:none;
+
+
+border-radius:20px;
+
+
+cursor:pointer;
+
+
+}
+
+/* ---------- Dashboard Meta ---------- */
+
+
+.dashboard-meta{
+
+
+margin-top:15px;
+
+
+font-size:14px;
+
+
+color:#666;
+
+
+}
+
+.store-status{
+
+
+margin-top:10px;
+
+
+}
+
+
+.store-status strong{
+
+
+color:#4B6A42;
+
+
+}

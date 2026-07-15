@@ -1,0 +1,558 @@
+/* ==========================================
+   CURA Robin Chat CSS
+
+   獨立控制 Robin 元件
+
+========================================== */
+
+
+
+/* ==========================================
+   Robin Avatar
+
+========================================== */
+
+
+.bird-avatar{
+
+
+    position:fixed;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:translate(-50%,-50%);
+
+
+
+    width:70px;
+
+
+    height:70px;
+
+
+
+    border-radius:50%;
+
+
+
+
+    background-size:cover;
+
+
+    background-position:center;
+
+
+
+    cursor:pointer;
+
+
+
+    z-index:1000;
+
+
+
+    touch-action:none;
+
+
+
+    user-select:none;
+
+
+
+    transition:
+    transform .25s ease;
+
+
+
+}
+
+
+
+
+
+
+
+.bird-avatar:hover{
+
+
+    transform:
+    translate(-50%,-50%)
+    scale(1.08);
+
+
+
+}
+
+
+
+
+
+/* ==========================================
+   Ask anything Tooltip
+
+========================================== */
+
+
+.avatar-tip{
+
+
+    position:absolute;
+
+
+
+    top:-35px;
+
+
+    left:50%;
+
+
+
+    transform:
+    translateX(-50%);
+
+
+
+    background:#F5F0E6;
+
+
+    color:#252525;
+
+
+
+    padding:6px 12px;
+
+
+
+    border-radius:20px;
+
+
+
+    font-size:12px;
+
+
+
+    white-space:nowrap;
+
+
+
+    opacity:0;
+
+
+
+    pointer-events:none;
+
+
+
+    transition:.3s;
+
+
+
+}
+
+
+
+
+
+
+.bird-avatar:hover .avatar-tip{
+
+
+    opacity:1;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   Chat Window
+
+========================================== */
+
+
+
+.bird-chat{
+
+    
+    position:fixed;
+
+    top:83px;
+
+    left:calc(50% - 37px);
+
+    width:280px;
+
+    transform:
+        translateY(-15px)
+        scale(.96);
+
+    width:260px;
+
+    padding:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(58,102,80,.96),
+        rgba(37,45,76,.96)
+    );
+
+    color:#F5F0E6;
+
+    border-radius:16px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:
+        translateX(-50%)
+        translateY(-15px)
+        scale(.96);
+
+    transform-origin:top center;
+}
+
+
+
+
+
+
+.bird-chat.open{
+
+
+    opacity:1;
+
+
+
+    pointer-events:auto;
+
+
+
+    transform:
+    translateY(0);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   Header
+
+========================================== */
+
+
+.bird-header{
+
+    position:relative;
+
+    width:100%;
+
+    height:45px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#F5F0E6;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+
+/* ==========================================
+   Back Button
+
+========================================== */
+
+
+.back-btn{
+
+    position:absolute;
+
+    left:0;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    background:none;
+
+    color:#F5F0E6;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    z-index:10;
+
+}
+
+
+
+
+
+
+.back-btn:hover{
+
+
+    color:white;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   Body
+
+========================================== */
+
+
+
+.bird-body{
+
+
+    margin-top:15px;
+
+
+
+}
+
+
+
+
+
+.bird-message{
+
+
+    line-height:1.8;
+
+
+
+    font-size:14px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================
+   Options
+
+========================================== */
+
+
+.bird-options{
+
+
+    display:flex;
+
+
+
+    flex-direction:column;
+
+
+
+    gap:10px;
+
+
+
+    margin-top:20px;
+
+
+
+}
+
+
+
+
+
+
+.bird-option{
+
+
+    border:1px solid rgba(245,240,230,.4);
+
+
+
+    background:transparent;
+
+
+
+    color:#F5F0E6;
+
+
+
+    padding:10px;
+
+
+
+    border-radius:12px;
+
+
+
+    cursor:pointer;
+
+
+
+    transition:.25s;
+
+
+
+    font-size:14px;
+
+
+
+}
+
+
+
+
+
+
+.bird-option:hover{
+
+
+    background:#F5F0E6;
+
+
+
+    color:#252525;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   Mobile
+
+========================================== */
+
+
+@media(max-width:768px){
+
+
+
+    .bird-avatar{
+
+
+        width:60px;
+
+
+        height:60px;
+
+
+    }
+
+
+
+
+
+    .bird-chat{
+
+
+        width:240px;
+
+
+    }
+
+
+
+}
+
+.bird-avatar{
+
+    position:fixed;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background-image:url("../images/robin.png");
+    background-size:cover;
+    background-position:center;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .3s ease,
+        transform .25s ease;
+
+}
+
+.bird-avatar.show{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}

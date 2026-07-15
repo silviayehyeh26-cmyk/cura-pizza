@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" 
+content="width=device-width, initial-scale=1.0">
+
+
+<title>
+CURA Intelligence Dashboard
+</title>
+
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="dashboard-logo">
+
+CURA
+
+</div>
+
+
+<nav>
+
+
+<a>
+總覽 Dashboard
+</a>
+
+
+<a>
+顧客洞察
+</a>
+
+
+<a>
+菜單績效
+</a>
+
+
+<a>
+營運分析
+</a>
+
+
+<a>
+永續影響
+</a>
+
+
+<a>
+會員回饋
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+
+<!-- Main -->
+
+
+<main class="dashboard-main">
+
+
+<header class="dashboard-header">
+
+    <div class="header-left">
+
+        <h1>CURA Intelligence Dashboard</h1>
+
+        <p>智慧餐飲體驗與營運分析</p>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="dashboard-meta">
+
+            Last Updated<br>
+            2026/07/15 22:00
+
+        </div>
+
+        <div class="store-status">
+
+            ● Healthy
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+<section class="kpi-grid">
+
+
+<div class="kpi-card revenue">
+
+<span>
+本月營收
+</span>
+
+
+<h2>
+385,000
+</h2>
+
+
+<p class="positive">
+↑12% 較上月成長
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="kpi-card orders">
+
+<span>
+訂單數
+</span>
+
+
+<h2>
+860
+</h2>
+
+
+<p class="positive">
+穩定成長
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="kpi-card retention">
+
+<span>
+回訪率
+</span>
+
+
+<h2>
+64%
+</h2>
+
+
+<p class="positive">
+顧客黏著良好
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="kpi-card sustainability">
+
+<span>
+浪費減少
+</span>
+
+
+<h2>
+18%
+</h2>
+
+
+<p class="positive">
+成本改善
+</p>
+
+<small>
+
+持續優化食材配置
+
+</small>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<section class="dashboard-panel">
+
+
+<h2>
+Customer Taste Insight
+</h2>
+
+
+<div class="radar-area">
+
+
+<canvas id="tasteRadar">
+
+</canvas>
+
+
+<div class="insight-box">
+
+<h3>
+CURA Insight
+</h3>
+
+
+<p>
+
+本月顧客偏好以清爽與香氣型風味為主。
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="dashboard-panel">
+
+
+<h2>
+Menu Intelligence
+</h2>
+
+<p class="panel-description">
+
+AI 分析熱門餐點與顧客偏好關聯
+
+</p>
+
+
+<div id="menu-list">
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="dashboard-panel">
+
+
+<h2>
+Reward Management
+</h2>
+
+
+<div id="reward-box">
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="dashboard-panel">
+
+
+<h2>
+Sustainability
+
+</h2>
+
+
+<div id="eco-box">
+
+</div>
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../data/dashboard-data.js"></script>
+
+<script src="../js/dashboard.js"></script>
+
+
+</body>
+
+
+</html>
