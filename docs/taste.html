@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CURA Taste Companion</title>
+
+
+<link rel="stylesheet" href="../css/taste.css">
+
+</head>
+
+<body>
+
+<div class="taste-container">
+
+    <div class="hero">
+
+        <div class="logo">
+            CURA PIZZA
+        </div>
+
+<h1>
+    Taste Companion
+</h1>
+
+<div class="hero-slogan">
+
+    <span>
+        Every taste tells a story.
+    </span>
+
+    <h2>
+
+        每一種風味，
+        都有屬於自己的故事。
+
+    </h2>
+
+</div>
+
+<div class="hero-description">
+
+ 
+
+        <div class="feature-preview">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🧭
+        </div>
+
+        <h3>
+            建立味覺雷達圖
+        </h3>
+
+        <p>
+            了解自己的風味偏好<br>
+            探索屬於你的 Taste Profile
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📊
+        </div>
+
+        <h3>
+            找到風味共鳴
+        </h3>
+
+        <p>
+            與餐點 Radar 疊圖<br>
+            理解彼此的風味差異
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🌱
+        </div>
+
+        <h3>
+            探索品牌故事
+        </h3>
+
+        <p>
+            認識食材來源、<br>
+            永續理念與 CURA 背後的價值
+        </p>
+
+    </div>
+
+</div>
+
+        <div class="hero-buttons">
+
+            <button id="startTaste">
+                開始探索吧
+            </button>
+
+            <button id="skipTaste" class="secondary">
+
+                直接看菜單
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section class="taste-builder">
+
+
+<h1>
+
+建立你的味覺地圖
+
+</h1>
+
+
+<p>
+
+調整你的偏好方向，
+讓 CURA 更了解你的風味探索。
+
+</p>
+
+
+
+<div class="taste-slider-group">
+
+
+<div class="taste-slider-card">
+
+
+<h3>
+
+清爽
+
+<span>Fresh</span>
+
+</h3>
+
+
+<input 
+type="range"
+min="0"
+max="100"
+value="70"
+id="freshnessSlider">
+
+
+<div class="range-label">
+
+<span>清爽</span>
+
+<span>濃厚</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="taste-slider-card">
+
+
+<h3>
+
+簡單
+
+<span>Simple</span>
+
+</h3>
+
+
+<input 
+type="range"
+min="0"
+max="100"
+value="50"
+id="complexitySlider">
+
+
+<div class="range-label">
+
+<span>簡單</span>
+
+<span>豐富</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="taste-slider-card">
+
+
+<h3>
+
+柔軟
+
+<span>Texture</span>
+
+</h3>
+
+
+<input 
+type="range"
+min="0"
+max="100"
+value="65"
+id="textureSlider">
+
+
+<div class="range-label">
+
+<span>柔軟</span>
+
+<span>酥脆</span>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<button id="generateTaste">
+
+建立我的 Taste Radar
+
+</button>
+
+
+
+<div class="radar-result" id="radarResult">
+
+
+<h2>
+Your Taste Radar
+</h2>
+
+
+<canvas id="myTasteRadar"></canvas>
+
+
+<div class="taste-summary">
+
+<p id="tasteSummary">
+
+調整你的偏好後，
+CURA 將建立你的味覺地圖。
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+<section class="menu-intelligence">
+
+
+<h1>
+Menu Intelligence
+</h1>
+
+
+<p>
+探索每款披薩與你的味覺關係。
+</p>
+
+
+
+<div 
+id="menuIntelligence"
+class="pizza-grid">
+
+
+</div>
+
+
+</section>
+
+<section class="selection-section">
+
+
+<div class="selection-container">
+
+
+<div id="journeyStatus">
+
+</div>
+
+
+<h1>
+My Taste Selection
+</h1>
+
+
+<div id="selectionList">
+
+</div>
+
+<div
+class="choice-insight"
+id="choice-${pizza.id}">
+
+</div>
+
+</div>
+
+
+</section>
+
+<section class="taste-identity">
+
+<h1>
+My Taste Identity
+</h1>
+
+
+<div id="tasteIdentity">
+
+</div>
+
+
+</section>
+
+<section class="taste-insight">
+
+<h1>
+Taste Insight
+</h1>
+
+
+<div id="tasteInsight">
+
+</div>
+
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../data/pizza-data.js"></script>
+
+<script src="../data/selection-data.js"></script>
+
+<script src="../js/taste.js"></script>
+
+<script src="../js/pizza-radar.js"></script>
+
+<script src="../js/match-engine.js"></script>
+
+<script src="../data/journey-data.js"></script>
+
+<script src="../js/journey-summary.js"></script>
+
+<script src="../js/journey-engine.js"></script>
+
+<script src="../js/taste-identity.js"></script>
+
+<script src="../js/taste-memory.js"></script>
+
+<script src="../js/selection-engine.js"></script>
+
+<script src="../js/match-detail.js"></script>
+
+<script src="../js/sustainability.js"></script>
+
+<script src="../js/choice-insight.js"></script>
+
+<script src="../js/menu-intelligence.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+

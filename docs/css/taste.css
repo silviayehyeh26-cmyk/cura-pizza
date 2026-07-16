@@ -10,41 +10,52 @@ body{
 
 .taste-container{
 
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
+
 
 }
 
 .hero{
 
-    width:700px;
+    width:100%;
+
+    max-width:1000px;
 
     text-align:center;
+
+    padding: 80px 40px;
+
+    display:block;
 
 }
 
 .logo{
 
-    font-size:48px;
+    font-size:52px;
 
     font-weight:700;
 
-    letter-spacing:4px;
+    letter-spacing:6px;
 
     color:#A9473A;
+
+    margin-bottom:18px;
 
 }
 
 .hero h1{
 
-    margin-top:25px;
+    font-size:36px;
 
-    font-size:42px;
+    margin:0;
+
+    color:#474444;
 
 }
 
@@ -94,6 +105,817 @@ body{
 
 .secondary{
 
+    background:#A9473A;
+
+    color:white;
+}
+
+/* ===========================
+   Feature Preview
+=========================== */
+
+.feature-preview{
+
+    margin:45px 0;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.feature-card{
+
+    background:#FFFFFF;
+
+    padding:28px 22px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+    transition:.3s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.feature-card{
+
+    border:1px solid rgba(0,0,0,.04);
+
+}
+
+.feature-icon{
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+}
+
+.feature-card h3{
+
+    margin:0 0 12px;
+
+    font-size:20px;
+
+}
+
+.feature-card p{
+
+    margin:0;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#666;
+
+}
+
+@media(max-width:768px){
+
+    .feature-preview{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero{
+
+        width:90%;
+
+    }
+
+}
+
+/* ===========================
+   Hero Slogan
+=========================== */
+
+.hero-slogan{
+
+    margin:30px 0;
+
+}
+
+.hero-slogan span{
+
+    display:block;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+
+    color:#A9473A;
+
+    text-transform:uppercase;
+
+    margin-bottom:14px;
+
+}
+
+.hero-slogan h2{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+    color:#706d6d;
+
+}
+
+.hero-description{
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+/* ===========================
+   Taste Builder
+=========================== */
+
+
+.taste-builder{
+
+    min-height:100vh;
+
+    padding:80px 40px;
+
+    text-align:center;
+
+}
+
+
+
+.taste-builder h1{
+
+    font-size:42px;
+
+}
+
+
+
+.taste-builder p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+
+
+
+.taste-slider-group{
+
+    max-width:700px;
+
+    margin:50px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+
+
+.taste-slider-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:left;
+
+}
+
+
+
+
+.taste-slider-card h3{
+
+    margin-top:0;
+
+}
+
+
+
+.taste-slider-card span{
+
+    color:#A9473A;
+
+    font-size:14px;
+
+}
+
+
+
+
+input[type="range"]{
+
+    width:100%;
+
+    accent-color:#A9473A;
+
+}
+
+
+
+.range-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:10px;
+
+    color:#777;
+
+}
+
+
+
+
+#generateTaste{
+
+    padding:15px 40px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#A9473A;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+.taste-builder{
+
+    display:block;
+
+    width:100%;
+
+}
+
+
+.taste-builder h1,
+.taste-builder p{
+
+    text-align:center;
+
+}
+
+body{
+
+    display:block;
+
+}
+
+
+.taste-container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.taste-builder{
+
+    width:100%;
+
+    display:block;
+
+}
+
+/* ===========================
+   Radar Result
+=========================== */
+
+
+.radar-result{
+
+    max-width:700px;
+
+    margin:80px auto;
+
+    padding:40px;
+
+    background:white;
+
+    border-radius:30px;
+
+    text-align:center;
+
+}
+
+
+
+#myTasteRadar{
+
+    max-width:450px;
+
+    margin:auto;
+
+}
+
+
+
+.taste-summary{
+
+    margin-top:30px;
+
+    background:#F5F0E6;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    line-height:1.8;
+
+}
+
+.pizza-card{
+
+
+width:360px;
+
+padding:30px;
+
+
+background:#edd9d1;
+
+
+border-radius:24px;
+
+
+box-shadow:
+0 20px 40px rgba(0,0,0,.08);
+
+
+}
+
+
+.pizza-header h2{
+
+
+margin-bottom:10px;
+
+
+}
+
+
+
+.radar-box{
+
+
+margin-top:20px;
+
+
+padding:20px;
+
+
+background:#F8F3EA;
+
+
+border-radius:20px;
+
+
+}
+
+
+
+.radar-box canvas{
+
+
+width:100%;
+
+
+}
+
+
+
+.match-preview{
+
+
+margin-top:20px;
+
+
+padding:15px;
+
+
+border-left:3px solid #A9473A;
+
+
+}
+
+
+
+.select-pizza{
+
+
+margin-top:20px;
+
+
+padding:12px 24px;
+
+
+border-radius:30px;
+
+
+border:none;
+
+
+background:#A9473A;
+
+
+color:white;
+
+
+}
+
+.taste-bar{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+margin:8px 0;
+
+font-size:14px;
+
+}
+
+
+.bar{
+
+flex:1;
+
+height:6px;
+
+background:#ddd;
+
+border-radius:10px;
+
+overflow:hidden;
+
+}
+
+
+.fill{
+
+height:100%;
+
+background:#A9473A;
+
+}
+
+.select-pizza{
+
+position:relative;
+
+z-index:999;
+
+pointer-events:auto;
+
+cursor:pointer;
+
+}
+
+/* ===========================
+   Taste Selection
+=========================== */
+
+
+.selection-section{
+
+    margin-top:80px;
+
+}
+
+
+.selection-section h1{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+
+#selectionList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    max-width:600px;
+
+    margin:0 auto;
+
+}
+
+
+
+.selection-item{
+
+
+    background:
+    rgba(255,255,255,0.5);
+
+
+    border:1px solid rgba(0,0,0,0.08);
+
+
+    border-radius:18px;
+
+
+    padding:24px;
+
+
+    font-size:18px;
+
+
+    line-height:1.6;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.selection-item:hover{
+
+
+    transform:translateY(-3px);
+
+
+}
+
+/* ===========================
+   Selection Container
+=========================== */
+
+
+.selection-container{
+
+
+    max-width:700px;
+
+    margin:0 auto;
+
+    padding:40px;
+
+
+    background:
+    rgba(255,255,255,0.35);
+
+
+    border:
+    1px solid rgba(0,0,0,0.08);
+
+
+    border-radius:24px;
+
+
+    backdrop-filter:blur(8px);
+
+
+}
+
+
+
+.selection-container h1{
+
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+
+}
+
+/* ===========================
+   TASTE IDENTITY
+=========================== */
+
+
+.taste-identity{
+
+    margin-top:80px;
+
+    padding:40px;
+
+}
+
+
+
+.identity-card{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:40px;
+
     background:#EFE7DA;
+
+    border-radius:24px;
+
+    text-align:center;
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+
+}
+
+
+
+.identity-card h2{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.identity-level{
+
+    display:inline-block;
+
+    padding:8px 20px;
+
+    border-radius:20px;
+
+    background:#A9473A;
+
+    color:white;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.identity-favorites{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+
+
+.identity-pizza{
+
+    padding:12px 20px;
+
+    background:white;
+
+    border-radius:16px;
+
+}
+
+
+
+.taste-philosophy{
+
+    margin-top:30px;
+
+    font-style:italic;
+
+}
+
+/* ===========================
+   TASTE IDENTITY
+=========================== */
+
+.taste-identity{
+
+    margin-top:80px;
+
+    padding:40px;
+
+}
+
+
+.identity-card{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.55);
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    border-radius:24px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.08);
+
+}
+
+/* ===========================
+   TASTE INSIGHT
+=========================== */
+
+
+.taste-insight{
+
+    margin-top:80px;
+
+    padding:40px;
+
+}
+
+
+.insight-card{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.55);
+
+    border-radius:24px;
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.08);
+
+}
+
+/* ===========================
+   SECTION CONTAINER
+=========================== */
+
+
+.taste-identity,
+.taste-insight{
+
+    margin-top:80px;
+
+    padding:40px;
+
+    border-radius:24px;
+
+    border:1px solid rgba(37,37,37,0.12);
+
+    background:#F5F0E6;
 
 }
