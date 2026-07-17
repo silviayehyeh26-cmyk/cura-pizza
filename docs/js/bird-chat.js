@@ -432,6 +432,11 @@ backBtn.addEventListener(
 
 ========================================== */
 
+birdAvatar.addEventListener(
+"click",
+()=>{
+    toggleChat();
+});
 
 function toggleChat(){
 
@@ -565,112 +570,16 @@ birdAvatar.addEventListener(
 
 
 
-birdAvatar.addEventListener(
-"pointermove",
-(event)=>{
+/*
+birdAvatar.style.left =
+newLeft+"px";
 
+birdAvatar.style.top =
+newTop+"px";
 
-
-    if(!dragging)
-    return;
-
-
-
-
-    const dx =
-    event.clientX-startX;
-
-
-
-    const dy =
-    event.clientY-startY;
-
-
-
-    if(
-        Math.abs(dx)>5 ||
-        Math.abs(dy)>5
-    ){
-
-
-        moved=true;
-
-
-    }
-
-
-
-
-    let newLeft =
-    startLeft + dx;
-
-
-
-    let newTop =
-    startTop + dy;
-
-
-
-
-    const maxX =
-    window.innerWidth -
-    birdAvatar.offsetWidth;
-
-
-
-    const maxY =
-    window.innerHeight -
-    birdAvatar.offsetHeight;
-
-
-
-
-    newLeft =
-    Math.max(
-        0,
-        Math.min(maxX,newLeft)
-    );
-
-
-
-    newTop =
-    Math.max(
-        0,
-        Math.min(maxY,newTop)
-    );
-
-
-
-
-    birdAvatar.style.left =
-    newLeft+"px";
-
-
-
-    birdAvatar.style.top =
-    newTop+"px";
-
-
-
-    birdAvatar.style.transform =
-    "none";
-
-
-
-
-    if(birdChat.classList.contains("open")){
-
-
-       birdChat.style.transform =
-       `translate(${newLeft }px, ${newTop }px)`;
-
-
-    }
-
-
-
-});
-
+birdAvatar.style.transform =
+"none";
+*/
 
 
 
