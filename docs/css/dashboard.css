@@ -52,7 +52,7 @@ body{
 
     color:#F5F0E6;
 
-    padding:35px 25px;
+    padding:90px 35px 25px;
 
 
     position:fixed;
@@ -62,7 +62,31 @@ body{
 
 }
 
+@media(max-width:768px){
 
+
+.sidebar{
+
+    display:block;
+
+    left:-240px;
+
+    transition:.3s;
+
+    z-index:100;
+
+
+}
+
+
+.sidebar.active{
+
+    left:0;
+
+}
+
+
+}
 
 .dashboard-logo{
 
@@ -171,6 +195,16 @@ body{
     flex-direction:column;
 
     gap:10px;
+
+}
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
 
 }
 
@@ -348,6 +382,42 @@ border-left:
 
 }
 
+@media(max-width:768px){
+
+.kpi-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.kpi-card{
+
+    padding:18px;
+
+}
+
+
+.kpi-card h2{
+
+    font-size:28px;
+
+}
+
+
+.kpi-card span{
+
+    font-size:13px;
+
+}
+
+}
+
 /* ---------- Panel ---------- */
 
 
@@ -425,7 +495,39 @@ margin-bottom:25px;
 }
 
 
+@media(max-width:768px){
 
+canvas{
+
+    max-width:100% !important;
+
+    height:auto !important;
+
+    max-width:400px;
+}
+
+}
+
+@media(max-width:768px){
+
+.radar-area{
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+.insight-box{
+
+    width:100%;
+
+    max-width:none;
+
+}
+
+}
 
 
 .insight-box{
@@ -504,7 +606,15 @@ box-shadow:
 
 }
 
+@media(max-width:768px){
 
+.reward-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
 
 .reward-item{
 
@@ -579,7 +689,15 @@ font-size:16px;
 
 }
 
+@media(max-width:768px){
 
+.eco-box{
+
+    flex-direction:column;
+
+}
+
+}
 
 .eco-card{
 
@@ -674,12 +792,22 @@ font-size:16px;
 
     .sidebar{
 
+        display:block;
 
-        display:none;
+        left:-240px;
 
+        transition:.3s;
+
+        z-index:1000;
 
     }
 
+
+    .sidebar.active{
+
+        left:0;
+
+    }
 
 
     .dashboard-main{
@@ -690,15 +818,6 @@ font-size:16px;
         width:100%;
 
         padding:20px;
-
-
-    }
-
-
-    .kpi-grid{
-
-
-        grid-template-columns:1fr;
 
 
     }
@@ -717,13 +836,12 @@ font-size:16px;
 
 }
 
+/* ===== Fix Layout ===== */
+
 
 .kpi-grid{
 
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
 
 }
 
@@ -759,7 +877,7 @@ font-size:16px;
 
     width:400px!important;
 
-    height:400px!important;
+    
 
 }
 
@@ -950,5 +1068,221 @@ margin-top:10px;
 
 color:#4B6A42;
 
+
+}
+
+/* =================================
+   DASHBOARD MOBILE
+================================= */
+
+@media(max-width:768px){
+
+
+.dashboard-main{
+
+    padding:20px;
+
+}
+
+
+.dashboard-header{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.dashboard-header h1{
+
+    font-size:30px;
+
+}
+
+
+.radar-area{
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+#tasteRadar{
+
+    width:100%!important;
+
+    height:auto!important;
+
+    max-width:400px;
+
+}
+
+
+.insight-box{
+
+    width:100%;
+
+    max-width:none;
+
+}
+
+
+.eco-box{
+
+    flex-direction:column;
+
+}
+
+
+.reward-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.menu-card{
+
+    width:100%;
+
+}
+
+
+}
+
+/* ==========================
+   DASHBOARD MOBILE MENU BTN
+========================== */
+
+
+.dashboard-menu-btn{
+
+    display:none;
+
+    width:35px;
+
+    height:28px;
+
+    border:none;
+
+    background:none;
+
+    padding:0;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    cursor:pointer;
+
+    position:relative;
+
+    z-index:1100;
+}
+
+
+.dashboard-menu-btn span{
+
+    width:35px;
+
+    height:2px;
+
+    background:#252525;
+
+    transition:.3s;
+
+}
+
+@media(max-width:768px){
+
+.dashboard-menu-btn{
+
+    display:flex;
+
+}
+
+}
+
+
+
+.dashboard-menu-btn.close span:nth-child(1){
+
+    transform:
+    translateY(13px)
+    rotate(45deg);
+
+}
+
+
+.dashboard-menu-btn.close span:nth-child(2){
+
+    opacity:0;
+
+}
+
+
+.dashboard-menu-btn.close span:nth-child(3){
+
+    transform:
+    translateY(-13px)
+    rotate(-45deg);
+
+}
+
+.dashboard-menu-btn.close span{
+    background:#F5F0E6;
+}
+
+
+
+.dashboard-header{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    
+
+}
+
+
+.header-left{
+
+    width:100%;
+
+}
+
+
+.header-right{
+
+    text-align:left;
+
+}
+
+/* ==========================
+   FINAL MOBILE KPI FIX
+========================== */
+
+@media(max-width:768px){
+
+    .kpi-grid{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        gap:15px;
+
+    }
+
+
+    .kpi-card{
+
+        min-width:0;
+
+    }
 
 }
