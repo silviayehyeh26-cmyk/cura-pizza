@@ -108,6 +108,28 @@ h1{
     margin:0;
 }
 
+@media(max-width:768px){
+
+h1{
+
+    font-size:42px;
+
+    letter-spacing:4px;
+
+}
+
+.hero-right{
+
+    margin-top:25px;
+
+}
+
+.hero-image{
+
+    width:100%;
+}
+}
+
 .hero-tagline{
     font-size:22px;
     line-height:2;
@@ -240,6 +262,34 @@ h1{
 
 }
 
+@media(max-width:768px){
+
+.menu-panel{
+
+    width:90%;
+
+    padding:40px 20px;
+
+}
+
+
+.menu-panel{
+
+    width:72%;
+
+    right:-72%;
+
+}
+
+.menu-panel.active{
+
+    right:0;
+
+}
+
+}
+
+
 .menu-panel.active{
     right:0;
 }
@@ -296,7 +346,7 @@ h1{
 
     color:#2C2926;
 
-    font-size:24px;
+    font-size:18px;
 
     letter-spacing:3px;
 
@@ -309,6 +359,7 @@ h1{
     transition:var(--transition);
 
 }
+
 
 .menu-panel.active nav a{
 
@@ -524,6 +575,20 @@ color:var(--color-secondary);
 
 }
 
+@media(max-width:768px){
+
+.hero-image img{
+
+    height:auto;
+
+    aspect-ratio:4 / 3;
+
+    object-fit:cover;
+
+}
+
+}
+
 .hero-image:hover img{
 
     transform:scale(1.03);
@@ -658,6 +723,23 @@ color:var(--color-secondary);
 .menu-image{
 
     flex:1;
+
+}
+
+@media(max-width:768px){
+
+.menu-image{
+
+    width:100%;
+
+}
+
+
+.menu-image img{
+
+    width:100%;
+
+}
 
 }
 
@@ -837,20 +919,208 @@ color:var(--color-secondary);
 
 }
 
+.location-info{
+
+    margin:40px 0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.location-info p{
+
+    margin:0;
+
+    font-size:20px;
+
+    letter-spacing:2px;
+
+    line-height:1.8;
+
+}
+
+.location-buttons{
+
+    margin-top:40px;
+
+}
+
+.location-info{
+
+    margin:60px 0;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:35px 60px;
+
+    text-align:left;
+
+}
+
+.info-item h3{
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+    letter-spacing:3px;
+
+    color:var(--color-secondary);
+
+    text-transform:uppercase;
+
+}
+
+.info-item p{
+
+    margin:0;
+
+    font-size:19px;
+
+    line-height:1.8;
+
+    letter-spacing:1px;
+
+}
+
+.location-buttons{
+
+    margin-top:20px;
+
+}
+
+.contact-social{
+
+    margin-top:60px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+}
+
+.contact-social a{
+
+    text-decoration:none;
+
+    color:var(--color-text);
+
+    letter-spacing:2px;
+
+    transition:.3s;
+
+}
+
+.contact-social a:hover{
+
+    color:var(--color-secondary);
+
+}
+
+@media (max-width:768px){
+
+    .location-info{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .contact-social{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+}
+
 /* ===========================
    FOOTER
 =========================== */
 
 
+/* ===========================
+   FOOTER
+=========================== */
+
 .footer{
-
-    padding:50px;
-
-    text-align:center;
 
     background:#252525;
 
     color:#F5F0E6;
+
+    text-align:center;
+
+    padding:80px 40px 50px;
+
+}
+
+.footer-logo{
+
+    font-size:36px;
+
+    letter-spacing:10px;
+
+    margin-bottom:18px;
+
+}
+
+.footer-slogan{
+
+    margin:0;
+
+    font-size:18px;
+
+    letter-spacing:3px;
+
+    opacity:.9;
+
+}
+
+.footer-copy{
+
+    margin-top:20px;
+
+    font-size:16px;
+
+    letter-spacing:2px;
+
+    opacity:.65;
+
+}
+
+.footer-line{
+
+    width:120px;
+
+    height:1px;
+
+    margin:45px auto;
+
+    background:rgba(245,240,230,.25);
+
+}
+
+.footer-copyright{
+
+    margin:0;
+
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    opacity:.5;
 
 }
 
@@ -871,5 +1141,473 @@ color:var(--color-secondary);
     letter-spacing:3px;
 
     opacity:.8;
+
+}
+
+/* ====================================
+   CURA RESPONSIVE DESIGN v1.0
+   INDEX PAGE
+==================================== */
+
+
+/* ====================================
+   TABLET
+   1024px 以下
+==================================== */
+
+@media(max-width:1024px){
+
+
+    /* HERO */
+
+    .hero{
+
+        flex-direction:column;
+
+        height:auto;
+
+        min-height:100vh;
+
+        padding:120px 40px 80px;
+
+        text-align:center;
+
+    }
+
+
+    .hero-left{
+
+        flex:1;
+
+        width:100%;
+
+    }
+
+
+    .hero-right{
+
+        width:100%;
+
+        justify-content:center;
+
+        margin-top:60px;
+
+    }
+
+
+    .hero-image{
+
+        max-width:600px;
+
+    }
+
+
+    .hero-image img{
+
+        height:500px;
+
+    }
+
+
+    h1{
+
+        font-size:72px;
+
+    }
+
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+
+    /* MENU DRAWER */
+
+
+    .menu-panel{
+
+        width:45%;
+
+    }
+
+
+}
+
+
+
+/* ====================================
+   MOBILE
+   768px 以下
+==================================== */
+
+
+@media(max-width:768px){
+
+
+    /* GLOBAL */
+
+
+    body{
+
+        overflow-x:hidden;
+
+    }
+
+
+
+    /* HEADER */
+
+
+    .header{
+
+        height:70px;
+
+        padding:0 25px;
+
+    }
+
+
+    .logo{
+
+        font-size:24px;
+
+        letter-spacing:4px;
+
+    }
+
+
+    .menu-btn{
+
+        width:32px;
+
+        height:22px;
+
+    }
+
+
+    .menu-btn span{
+
+        width:32px;
+
+    }
+
+
+
+    /* HERO */
+
+
+    .hero{
+
+        padding:
+
+        100px 25px 60px;
+
+    }
+
+
+    h1{
+
+        font-size:48px;
+
+        letter-spacing:6px;
+
+    }
+
+
+    .hero-tagline{
+
+        font-size:16px;
+
+        letter-spacing:2px;
+
+    }
+
+
+    .hero-description{
+
+        font-size:16px;
+
+        letter-spacing:2px;
+
+    }
+
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+        gap:15px;
+
+    }
+
+
+    .btn{
+
+        width:100%;
+
+        box-sizing:border-box;
+
+    }
+
+
+
+    .hero-image img{
+
+        height:350px;
+
+    }
+
+
+
+
+    /* MENU PANEL */
+
+
+    .menu-panel{
+
+
+
+        padding:50px 30px;
+
+    }
+
+
+    .menu-title{
+
+        font-size:28px;
+
+    }
+
+
+    .menu-panel nav a{
+
+        font-size:20px;
+
+    }
+
+
+
+
+    /* BRAND STORY */
+
+
+    .brand-story{
+
+        padding:60px 25px;
+
+    }
+
+
+    .brand-story h2{
+
+        font-size:32px;
+
+        letter-spacing:3px;
+
+    }
+
+    
+@media (max-width: 768px) {
+    .brand-story h2 {
+        font-size: 18px;
+        letter-spacing: 8px;
+    }
+}
+
+    .brand-story p{
+
+        font-size:17px;
+
+        letter-spacing:2px;
+
+    }
+
+
+
+
+    /* MENU PREVIEW */
+
+
+    .menu-preview{
+
+        padding:60px 25px;
+
+    }
+
+
+    .menu-inner h2{
+
+        font-size:32px;
+
+        letter-spacing:3px;
+
+        margin-bottom:40px;
+
+    }
+
+
+    .menu-content{
+
+        flex-direction:column;
+
+        gap:35px;
+
+    }
+
+
+    .menu-text{
+
+        text-align:center;
+
+    }
+
+
+    .menu-text h3{
+
+        font-size:25px;
+
+    }
+
+
+    .menu-text p{
+
+        font-size:16px;
+
+    }
+
+
+
+
+    /* ALIVE STORY */
+
+
+    .alive-story{
+
+        padding:60px 25px;
+
+    }
+
+
+    .alive-inner h2{
+
+        font-size:32px;
+
+        letter-spacing:3px;
+
+    }
+
+
+    .alive-description{
+
+        font-size:17px;
+
+    }
+
+
+
+
+    /* FIND CURA */
+
+
+    .location-section{
+
+        padding:60px 25px;
+
+    }
+
+
+    .location-inner h2{
+
+        font-size:32px;
+
+    }
+
+
+    .location-text{
+
+        font-size:17px;
+
+    }
+
+
+
+    .location-info{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+
+
+    .contact-social{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+
+
+
+    /* FOOTER */
+
+
+    .footer{
+
+        padding:60px 25px 40px;
+
+    }
+
+
+    .footer-logo{
+
+        font-size:28px;
+
+        letter-spacing:6px;
+
+    }
+
+
+}
+
+/* ====================================
+   MOBILE FOOTER
+==================================== */
+
+@media(max-width:768px){
+
+    .footer{
+
+        padding:40px 20px 25px;
+
+    }
+
+
+    .footer-logo{
+
+        font-size:22px;
+
+        letter-spacing:5px;
+
+    }
+
+
+    .footer p{
+
+        font-size:13px;
+
+        letter-spacing:2px;
+
+        font-size:13px;
+
+    }
 
 }
