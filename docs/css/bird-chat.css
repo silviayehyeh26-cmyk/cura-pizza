@@ -20,7 +20,7 @@
     position:fixed;
 
     top:44px;
-    right:90px;
+    left:150px;
 
     transform:translateY(-50%);
 
@@ -91,7 +91,7 @@
 
 
 
-    top:80px;
+    top:62px;
 
 
     left:50%;
@@ -172,8 +172,8 @@
 
     position:fixed;
 
-    top:100px;
-    right:80px;
+    top:90px;
+    left:80px;
 
     width:280px;
 
