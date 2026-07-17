@@ -1,3 +1,4 @@
+console.log("bird chat loaded");
 /* ==========================================
    CURA Robin Chat v3
 
@@ -440,10 +441,11 @@ birdAvatar.addEventListener(
 
 function toggleChat(){
 
+    console.log("Robin clicked");
+
 
     chatOpen =
     !chatOpen;
-
 
 
     birdChat.classList.toggle(
@@ -451,21 +453,16 @@ function toggleChat(){
     );
 
 
-
     birdAvatar.classList.toggle(
         "chat-active"
     );
 
 
-
     if(chatOpen){
-
 
         updateChat();
 
-
     }
-
 
 }
 
@@ -489,82 +486,6 @@ function toggleChat(){
 
 
 
-let dragging=false;
-
-
-let startX=0;
-
-
-let startY=0;
-
-
-let startLeft=0;
-
-
-let startTop=0;
-
-
-let moved=false;
-
-
-
-const moveTarget =
-document.querySelector(".header");
-
-
-
-
-
-
-
-birdAvatar.addEventListener(
-"pointerdown",
-(event)=>{
-
-
-
-    dragging=true;
-
-
-
-    moved=false;
-
-
-
-    birdAvatar.setPointerCapture(
-        event.pointerId
-    );
-
-
-
-    startX =
-    event.clientX;
-
-
-
-    startY =
-    event.clientY;
-
-
-
-    const rect =
-    birdAvatar.getBoundingClientRect();
-
-
-
-    startLeft =
-    rect.left;
-
-
-
-    startTop =
-    rect.top;
-
-
-
-});
-
-
 
 
 
@@ -583,30 +504,6 @@ birdAvatar.style.transform =
 
 
 
-
-
-
-
-birdAvatar.addEventListener(
-"pointerup",
-()=>{
-
-
-    dragging=false;
-
-
-
-    if(!moved){
-
-
-        toggleChat();
-
-
-    }
-
-
-
-});
 
 
 

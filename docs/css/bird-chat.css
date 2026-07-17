@@ -15,10 +15,50 @@
 
 
 
+.bird-avatar{
+
+    position:fixed;
+
+    top:44px;
+    right:90px;
+
+    transform:translateY(-50%);
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background-image:url("../images/robin.png");
+    background-size:cover;
+    background-position:center;
+
+    cursor:pointer;
+
+    z-index:1000;
+
+    touch-action:none;
+
+    user-select:none;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .3s ease,
+        transform .25s ease;
+
+}
 
 
+.bird-avatar.show{
 
+    opacity:1;
 
+    pointer-events:auto;
+
+}
 
 
 .bird-avatar:hover{
@@ -28,6 +68,11 @@
     scale(1.08);
 
 }
+
+
+
+
+
 
 
 
@@ -46,7 +91,7 @@
 
 
 
-    top:-35px;
+    top:80px;
 
 
     left:50%;
@@ -58,10 +103,10 @@
 
 
 
-    background:#F5F0E6;
+    background:#3e4f60;
 
 
-    color:#252525;
+    color:#fdfdfa;
 
 
 
@@ -123,25 +168,14 @@
 ========================================== */
 
 
-
 .bird-chat{
 
-    
     position:fixed;
 
-      position:fixed;
+    top:100px;
+    right:80px;
 
-       top:90px;
-
-      right:80px;
-
-       width:280px;
-
-     transform:
-        translateY(-15px)
-        scale(.96);
-
-    width:260px;
+    width:280px;
 
     padding:20px;
 
@@ -161,11 +195,13 @@
     pointer-events:none;
 
     transform:
-        translateX(-50%)
         translateY(-15px)
         scale(.96);
 
-    transform-origin:top center;
+    transition:.3s ease;
+
+    z-index:999;
+
 }
 
 
@@ -175,19 +211,14 @@
 
 .bird-chat.open{
 
-
     opacity:1;
-
-
 
     pointer-events:auto;
 
-
-
     transform:
-    translateY(0);
-
-
+       
+        translateY(0)
+        scale(1);
 
 }
 
@@ -464,33 +495,7 @@
 
 }
 
-.bird-avatar{
 
-    position:fixed;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:70px;
-    height:70px;
-
-    border-radius:50%;
-
-    background-image:url("../images/robin.png");
-    background-size:cover;
-    background-position:center;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:
-        opacity .3s ease,
-        transform .25s ease;
-
-}
 
 .bird-avatar.show{
 
