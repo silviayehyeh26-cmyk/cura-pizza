@@ -20,7 +20,7 @@ selectionList.push(pizza);
 
 renderSelection();
 
-
+updateSelectionFloat();
 
 const button =
 document.querySelector(
