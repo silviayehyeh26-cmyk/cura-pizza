@@ -1,58 +1,24 @@
-/*
-====================================
-CURA Selection Engine
-
-Purpose:
-Manage customer's selected pizzas
-
-Concept:
-Selection ≠ Cart
-
-====================================
-*/
+function addToSelection(pizzaId){
 
 
-function addToSelection(pizza){
-
-
-
-const exists =
-selectionData.items.find(
-item=>item.id===pizza.id
+const pizza =
+pizzaData.find(
+item => item.id === pizzaId
 );
 
 
 
-if(exists){
-
-return;
-
-}
+if(!selectionList.includes(pizza)){
 
 
-
-selectionData.items.push({
-
-id:pizza.id,
-
-name:pizza.name,
-
-addedAt:new Date()
-
-});
-
-
-
-renderSelectionMessage(pizza);
+selectionList.push(pizza);
 
 
 }
 
 
 
-
-
-function renderSelectionMessage(pizza){
+renderSelection();
 
 
 
@@ -65,16 +31,12 @@ document.querySelector(
 
 if(button){
 
-
 button.innerHTML =
 "✓ 已加入選擇";
 
-
 button.disabled=true;
 
-
 }
-
 
 
 }

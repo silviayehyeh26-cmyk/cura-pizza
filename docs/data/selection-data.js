@@ -1,29 +1,3 @@
-function addSelection(pizzaId){
-
-
-const pizza =
-pizzaData.find(
-item => item.id === pizzaId
-);
-
-
-
-if(!selectionList.includes(pizza)){
-
-
-selectionList.push(pizza);
-
-
-}
-
-
-renderSelection();
-
-
-}
-
-
-
 function renderSelection(){
 
 
@@ -33,7 +7,21 @@ document.getElementById(
 );
 
 
+
+if(!container){
+
+console.warn(
+"Selection container not found"
+);
+
+return;
+
+}
+
+
+
 container.innerHTML="";
+
 
 
 selectionList.forEach(pizza=>{
@@ -55,9 +43,10 @@ container.innerHTML += `
 
 `;
 
+
 });
 
 
 }
 
-const selectionList = [];
+window.selectionList = [];

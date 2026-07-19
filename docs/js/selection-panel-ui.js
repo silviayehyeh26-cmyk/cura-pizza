@@ -17,14 +17,10 @@ e.target.dataset.id;
 
 
 
-const pizza =
-pizzaData.find(
-p=>p.id===id
-);
 
 
 
-addToSelection(pizza);
+addToSelection(id);
 
 
 
