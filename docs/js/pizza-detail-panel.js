@@ -113,6 +113,15 @@ data-id="${pizza.id}">
 
 </button>
 
+<button
+
+class="add-selection-btn"
+
+data-id="${pizza.id}">
+
+＋ 加入選擇
+
+</button>
 
 </div>
 
@@ -124,4 +133,6 @@ data-id="${pizza.id}">
 renderPizzaDetailRadar(pizza);
 
 
+
 }
+
