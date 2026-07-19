@@ -340,6 +340,65 @@ id="choice-${pizza.id}">
 
 </section>
 
+<section class="radar-comparison-section">
+
+
+<h1>
+Taste Comparison
+</h1>
+
+
+<p>
+理解你的風味偏好，與餐點特色之間的關係。
+</p>
+
+
+
+<div class="comparison-container">
+
+
+<div class="radar-card">
+
+
+<h2>
+Your Taste
+</h2>
+
+
+<canvas id="userTasteRadar"></canvas>
+
+
+</div>
+
+
+
+<div class="radar-card">
+
+
+<h2>
+Pizza Profile
+</h2>
+
+
+<canvas id="pizzaTasteRadar"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+<div id="radarDifference"
+class="radar-difference">
+
+
+</div>
+
+
+</section>
+
 <section class="taste-identity">
 
 <h1>
@@ -369,6 +428,9 @@ Taste Insight
 </section>
 
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
@@ -376,11 +438,33 @@ Taste Insight
 
 <script src="data/pizza-data.js"></script>
 
+<script src="data/pizza-intelligence-data.js"></script>
+
 <script src="data/selection-data.js"></script>
 
 <script src="data/journey-data.js"></script>
 
 <script src="data/app-state.js"></script>
+
+
+
+
+<!-- INTELLIGENCE -->
+
+<script src="js/pizza-intelligence-engine.js"></script>
+
+<script src="js/radar-comparison.js"></script>
+
+<script src="js/radar-comparison-ui.js"></script>
+
+
+
+<!-- JOURNEY -->
+
+<script src="js/journey-engine.js"></script>
+
+<script src="js/journey-summary.js"></script>
+
 
 
 <!-- TASTE CORE -->
@@ -391,12 +475,16 @@ Taste Insight
 
 <script src="js/match-engine.js"></script>
 
+<script src="js/match-engine-v2.js"></script>
+
+
 
 <!-- IDENTITY -->
 
 <script src="js/taste-identity.js"></script>
 
 <script src="js/taste-memory.js"></script>
+
 
 
 <!-- SELECTION -->
@@ -406,12 +494,6 @@ Taste Insight
 <script src="js/match-detail.js"></script>
 
 
-<!-- JOURNEY -->
-
-<script src="js/journey-engine.js"></script>
-
-<script src="js/journey-summary.js"></script>
-
 
 <!-- INSIGHT -->
 
@@ -420,9 +502,43 @@ Taste Insight
 <script src="js/choice-insight.js"></script>
 
 
+
 <!-- ESG -->
 
 <script src="js/sustainability.js"></script>
+
+<!-- EXPERIENCE -->
+
+<div 
+id="experiencePanel"
+class="experience-panel">
+
+
+<div class="experience-container">
+
+
+<button 
+class="experience-close">
+
+✕
+
+</button>
+
+
+<div 
+class="experience-body">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<script src="js/experience-panel.js"></script>
+
 
 
 

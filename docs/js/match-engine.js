@@ -282,3 +282,66 @@ return html;
 
 }
 
+function runCuraTasteMatching(){
+
+    if(typeof CURA_STATE === "undefined"){
+        console.error(
+            "CURA_STATE missing"
+        );
+        return;
+    }
+
+
+    let userTaste =
+    CURA_STATE.tasteProfile;
+
+
+    let results =
+    pizzaData.map(pizza=>{
+
+
+        let result =
+        calculateMatch(
+            userTaste,
+            pizza
+        );
+
+
+        return {
+
+            ...pizza,
+
+            match:result,
+
+            insight:
+            generateInsight(
+                result,
+                pizza
+            )
+
+        };
+
+
+    });
+
+
+    results.sort(
+        (a,b)=>
+        b.match.score -
+        a.match.score
+    );
+
+
+    CURA_STATE.matchResults =
+    results;
+
+
+    console.log(
+        "CURA OS Match Result",
+        results
+    );
+
+
+    return results;
+
+}

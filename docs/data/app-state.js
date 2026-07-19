@@ -1,43 +1,122 @@
 const CURA_STATE = {
 
-    // 使用者
-    currentCustomer: null,
+
+/*
+====================
+Customer Intelligence
+====================
+*/
+
+customerProfile:null,
 
 
-    // Taste Companion
-    tasteProfile: {
-        freshness: 50,
-        complexity: 50,
-        texture: 50,
-        aroma: 50,
-        exploration: 50
-    },
+/*
+====================
+Recommendation Engine
+====================
+*/
+
+recommendations:[],
 
 
-    // 選擇中的 Pizza
-    selectedItems: [],
+/*
+====================
+Taste Companion
+====================
+*/
+
+tasteProfile:{},
 
 
-    // 訂單
-    currentOrder: null,
+
+/*
+====================
+Current Experience
+目前用餐情境
+====================
+*/
+
+currentExperience:{
 
 
-    // CRM
-    customerHistory: [],
+occasion:null,
+
+groupSize:null,
+
+purpose:null
 
 
-    // 營運
-    inventoryStatus: {},
+},
 
 
-    // Dashboard
-    analytics: {},
 
 
-    // ESG
-    sustainability: {
-        carbonSaved: 0,
-        greenPoints: 0
-    }
+/*
+====================
+Selection
+====================
+*/
+
+selectedItems:[],
+
+
+
+/*
+====================
+Order
+====================
+*/
+
+currentOrder:null,
+
+
+
+/*
+====================
+CRM Memory
+====================
+*/
+
+customerHistory:[],
+
+
+
+/*
+====================
+Operations
+====================
+*/
+
+inventoryStatus:{},
+
+
+
+/*
+====================
+Analytics
+====================
+*/
+
+analytics:{},
+
+
+
+/*
+====================
+ESG
+====================
+*/
+
+sustainability:{
+
+
+carbonSaved:0,
+
+greenPoints:0
+
+
+}
+
+
 
 };
