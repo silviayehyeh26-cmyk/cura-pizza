@@ -109,7 +109,33 @@ tasteProfile.aroma / 10;
 
 
 
+// Sync with CURA OS Global State
 
+if(typeof CURA_STATE !== "undefined"){
+
+    CURA_STATE.tasteProfile = {
+
+        freshness: tasteProfile.freshness,
+
+        complexity: tasteProfile.complexity,
+
+        texture: tasteProfile.texture,
+
+        aroma: tasteProfile.aroma,
+
+        richness: tasteProfile.richness,
+
+        exploration: userTasteProfile.exploration
+
+    };
+
+
+    console.log(
+        "CURA OS Taste State Updated",
+        CURA_STATE.tasteProfile
+    );
+
+}
 
 
 console.log(
