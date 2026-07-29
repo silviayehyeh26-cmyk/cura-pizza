@@ -1,0 +1,279 @@
+/*
+================================
+CURA Selection Panel
+================================
+*/
+
+/*
+================================
+Selection Floating Button
+================================
+*/
+
+
+#selectionFloatBtn{
+
+
+    position:fixed;
+
+
+    right:30px;
+
+
+    bottom:30px;
+
+
+
+    width:70px;
+
+
+    height:70px;
+
+
+
+    border-radius:50%;
+
+
+
+    border:none;
+
+
+
+    background:#1b1b1b;
+
+
+
+    color:white;
+
+
+
+    font-size:32px;
+
+
+
+    display:flex;
+
+
+
+    justify-content:center;
+
+
+
+    align-items:center;
+
+
+
+    cursor:pointer;
+
+
+
+    z-index:1000;
+
+
+
+    box-shadow:
+
+    0 8px 25px rgba(0,0,0,.25);
+
+
+
+    transition:
+
+    transform .2s ease,
+
+    background .2s ease;
+
+
+}
+
+
+
+
+#selectionFloatBtn:hover{
+
+
+    transform:scale(1.08);
+
+
+    background:#000;
+
+
+}
+
+/* =====================
+Floating Pizza Button
+===================== */
+
+
+#selectionButton{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+
+    width:65px;
+
+    height:65px;
+
+
+    border-radius:50%;
+
+
+    border:none;
+
+
+    background:#1c1c1c;
+
+
+    color:white;
+
+
+    font-size:30px;
+
+
+    cursor:pointer;
+
+
+    z-index:1000;
+
+
+}
+
+
+
+
+
+/* =====================
+Panel
+===================== */
+
+
+#selectionPanel{
+
+
+    position:fixed;
+
+
+    top:0;
+
+
+    right:-420px;
+
+
+   
+
+
+    height:100vh;
+
+
+    background:white;
+
+
+    box-shadow:
+
+    -10px 0 30px rgba(0,0,0,.2);
+
+
+    transition:
+
+    right .4s ease;
+
+
+    z-index:999;
+
+
+    padding:30px;
+
+
+    overflow-y:auto;
+
+
+}
+
+
+
+
+
+/* Open */
+
+
+#selectionPanel.active{
+
+
+    right:0;
+
+
+}
+
+
+
+
+
+
+/* =====================
+Header
+===================== */
+
+
+.selection-header{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+#closeSelection{
+
+
+    border:none;
+
+
+    background:none;
+
+
+    font-size:24px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+/* =====================
+Items
+===================== */
+
+
+.selection-item{
+
+
+    margin-bottom:15px;
+
+
+    padding:15px;
+
+
+    border-radius:15px;
+
+
+    background:#f4eee7;
+
+
+}
+

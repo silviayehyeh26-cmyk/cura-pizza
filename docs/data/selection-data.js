@@ -3,9 +3,8 @@ function renderSelection(){
 
 const container =
 document.getElementById(
-"selectionList"
+"selectionItems"
 );
-
 
 
 if(!container){
