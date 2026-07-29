@@ -3,15 +3,9 @@
 
 CURA Interaction System
 
-Version 0.2
+v0.5
 
-FPS Raycast + E Interaction
-
-Features:
-- Center Raycast
-- Looking Detection
-- Keyboard Interaction
-- Memory Hook
+Mouse Click Gallery Entrance
 
 ================================
 */
@@ -21,18 +15,34 @@ import * as THREE from
 "https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js";
 
 
+import {
+
+galleryData
+
+}
+
+from "./gallery-data.js";
 
 
-// =============================
-// Raycaster
-// =============================
+import {
+
+openGalleryUI
+
+}
+
+from "./gallery-ui.js";
+
+
+// =====================
+// Core
+// =====================
 
 
 const raycaster =
 new THREE.Raycaster();
 
 
-const center =
+const mouse =
 new THREE.Vector2(
 0,
 0
@@ -40,27 +50,19 @@ new THREE.Vector2(
 
 
 
-
-
-// =============================
-// State
-// =============================
-
+let scene = null;
 
 let camera = null;
 
-let scene = null;
-
-
-let currentTarget = null;
 
 
 
 
 
-// =============================
+
+// =====================
 // Init
-// =============================
+// =====================
 
 
 export function initInteraction(
@@ -80,66 +82,89 @@ camera = _camera;
 
 window.addEventListener(
 
-"keydown",
+"click",
 
-(event)=>{
-
-
-    if(event.code === "KeyE"){
-
-
-        interact();
-
-
-    }
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-// =============================
-// Update
-// =============================
-
-
-export function updateInteraction(){
-
-
-
-if(
-!camera ||
-!scene
-){
-
-    return;
-
-}
-
-
-
-
-
-
-raycaster.setFromCamera(
-
-center,
-
-camera
+handleClick
 
 );
 
 
 
+console.log(
 
+"Mouse Interaction Ready"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
+// Click Event
+// =====================
+
+
+
+function handleClick(event){
+
+
+const galleryOpen =
+document
+.querySelector("#gallery-overlay")
+?.classList.contains("show");
+
+
+const pageOpen =
+document
+.querySelector("#gallery-page")
+?.classList.contains("show");
+
+
+
+if(
+galleryOpen ||
+pageOpen
+){
+
+return;
+
+}
+
+
+if(
+!scene ||
+!camera
+){
+
+return;
+
+}
+
+
+
+mouse.x =
+(event.clientX / window.innerWidth) * 2 - 1;
+
+
+mouse.y =
+-(event.clientY / window.innerHeight) * 2 + 1;
+
+
+
+raycaster.setFromCamera(
+
+mouse,
+
+camera
+
+);
 
 
 
@@ -157,54 +182,21 @@ true
 
 
 
-if(
-intersects.length === 0
+for(
+const hit of intersects
 ){
-
-    clearTarget();
-
-    return;
-
-}
-
-
-
-
 
 
 const target =
-
 findInteractable(
-
-intersects[0].object
-
+hit.object
 );
 
 
 
+if(!target){
 
-
-if(target){
-
-
-    setTarget(
-
-        target
-
-    );
-
-
-}
-
-else{
-
-
-    clearTarget();
-
-
-}
-
-
+continue;
 
 }
 
@@ -212,11 +204,33 @@ else{
 
 
 
+handleInteraction(
+target
+);
 
 
-// =============================
-// Find Parent
-// =============================
+
+return;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================
+// Find Interactable Parent
+// =====================
 
 
 function findInteractable(
@@ -236,24 +250,25 @@ while(current){
 
 
 
-    if(
+if(
 
-        current.userData
+current.userData &&
 
-        &&
+current.userData.interactable
 
-        current.userData.interactable
-
-    ){
-
-        return current;
-
-    }
+){
 
 
+return current;
 
-    current =
-    current.parent;
+
+}
+
+
+
+current =
+current.parent;
+
 
 
 }
@@ -263,6 +278,7 @@ while(current){
 return null;
 
 
+
 }
 
 
@@ -270,12 +286,14 @@ return null;
 
 
 
-// =============================
-// Target
-// =============================
 
 
-function setTarget(
+// =====================
+// Interaction Router
+// =====================
+
+
+function handleInteraction(
 
 object
 
@@ -283,82 +301,32 @@ object
 
 
 
-if(
-currentTarget === object
-){
-
-    return;
-
-}
+const data =
+object.userData;
 
 
 
 
-currentTarget = object;
-
-
-
-console.log(
-
-"Looking at:",
-
-object.userData.name
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-function clearTarget(){
-
-
-
-if(currentTarget){
-
-
-    console.log(
-
-    "Looking at: none"
-
-    );
-
-
-}
-
-
-
-currentTarget = null;
-
-
-}
-
-
-
-
-
-
-
-// =============================
-// Interaction
-// =============================
-
-
-function interact(){
-
-
+// Gallery Entrance
 
 if(
-!currentTarget
+
+data.type === "gallery-door"
+
 ){
 
-    return;
+
+
+openGallery(
+
+data.galleryID
+
+);
+
+
+
+return;
+
 
 }
 
@@ -367,28 +335,11 @@ if(
 
 console.log(
 
-"Interaction:",
+"Non gallery object:",
 
-currentTarget.userData.name
-
-);
-
-
-
-console.log(
-
-"Memory:",
-
-currentTarget.userData.memory
+object
 
 );
-
-
-
-
-
-// Future:
-// openMemoryUI(currentTarget)
 
 
 
@@ -399,24 +350,90 @@ currentTarget.userData.memory
 
 
 
-// =============================
-// Global Debug
-// =============================
+
+
+// =====================
+// Gallery
+// =====================
+
+
+function openGallery(id){
+
+
+const gallery =
+galleryData[id];
+
+
+if(!gallery){
+
+console.warn(
+"Gallery Not Found:",
+id
+);
+
+return;
+
+}
+
+
+
+console.log(
+"================================"
+);
+
+
+console.log(
+"Enter Gallery:",
+gallery.title
+);
+
+
+console.log(
+"ID:",
+id
+);
+
+
+console.log(
+"================================"
+);
+
+
+
+openGalleryUI(
+gallery
+);
+
+
+}
+
+
+
+
+
+
+
+
+// =====================
+// Debug
+// =====================
 
 
 window.CURA_INTERACTION = {
 
 
-getTarget(){
-
-    return currentTarget;
-
-},
+test(){
 
 
-update:
+console.log(
 
-updateInteraction
+"Interaction System v0.5"
+
+);
+
+
+}
+
 
 
 };

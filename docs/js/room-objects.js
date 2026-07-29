@@ -108,16 +108,7 @@ wood
 );
 
 
-tableTop.userData = {
 
-interactable:true,
-
-name:"Old Wooden Table",
-
-memory:
-"這張桌子保存了 CURA 過去的記憶。"
-
-};
 tableTop.position.set(
 
 0,
@@ -128,21 +119,8 @@ tableTop.position.set(
 
 );
 
-const tableGroup =
-new THREE.Group();
 
-
-tableGroup.userData = {
-
-interactable:true,
-
-name:"Old Wooden Table",
-
-memory:
-"這張桌子保存了 CURA 過去的記憶。"
-
-};
-tableGroup.add(tableTop);
+scene.add(tableTop);
 
 addCollider(
 tableTop
@@ -189,7 +167,7 @@ x,
 );
 
 
-tableGroup.add(leg);
+scene.add(leg);
 
 addCollider(
 leg
@@ -197,7 +175,7 @@ leg
 
 }
 
-scene.add(tableGroup);
+
 
 
 

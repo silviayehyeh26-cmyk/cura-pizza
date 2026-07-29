@@ -70,19 +70,20 @@ createOldPharmacyObjects
 
 from "./room-objects.js";
 
+import {
+
+createGalleryEntrances
+
+}
+
+from "./gallery-entrance.js";
 
 import {
 initInteraction
 }
 from "./interaction-system.js";
 
-import {
 
-updateInteraction
-
-}
-
-from "./interaction-system.js";
 // =============================
 // Container
 // =============================
@@ -545,7 +546,9 @@ addCollider
 
 );
 
-
+createGalleryEntrances(
+scene
+);
 
 
 
@@ -639,7 +642,7 @@ player.update();
 
 
 
-updateInteraction();
+
 
 
 
