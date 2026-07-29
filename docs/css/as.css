@@ -1,0 +1,230 @@
+/* =================================
+   Alive Story Hub
+================================= */
+
+
+/* ---------- Hero ---------- */
+
+
+.alive-hero{
+
+    width:100%;
+
+    min-height:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+
+
+.alive-hero h1{
+
+    font-size:clamp(32px,5vw,48px);
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.alive-hero p{
+
+    max-width:600px;
+
+    line-height:1.8;
+
+}
+
+
+
+
+
+/* ---------- Entry Cards ---------- */
+
+
+.alive-entry{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+padding:60px;
+
+width:100%;
+
+box-sizing:border-box;
+
+}
+
+
+.entry-card{
+
+aspect-ratio:1 / 1;
+
+background:#f8f5ef;
+
+border-radius:24px;
+
+padding:30px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+}
+
+
+.entry-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.entry-card .icon{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.entry-card h2{
+
+    margin-bottom:15px;
+
+}
+
+
+
+.entry-card p{
+
+    line-height:1.7;
+
+}
+
+
+
+.entry-card a{
+
+    margin-top:25px;
+
+    padding:12px 35px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+
+}
+
+
+
+
+
+/* ---------- Brand Story ---------- */
+
+
+.brand-story{
+
+    padding:80px 30px;
+
+    text-align:center;
+
+}
+
+
+
+
+
+/* ---------- Tutorial Modal ---------- */
+
+
+.tutorial-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.45);
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:999;
+
+}
+
+
+
+.tutorial-box{
+
+    width:min(420px,90%);
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:40px;
+
+    position:relative;
+
+}
+
+
+
+.close-btn{
+
+    position:absolute;
+
+    top:15px;
+
+    right:20px;
+
+    border:none;
+
+    background:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+
+
+.tutorial-step{
+
+    margin-top:25px;
+
+}
+
+
+
+

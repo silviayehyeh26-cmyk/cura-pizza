@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+<title>CURA Memory Room</title>
+
+
+<style>
+
+
+html,
+body{
+
+    margin:0;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+    background:#111;
+
+    font-family:
+    "Noto Sans TC",
+    sans-serif;
+
+}
+
+
+
+#room-container{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+
+
+canvas{
+
+    display:block;
+
+}
+
+
+
+
+/* =====================
+   Floating UI
+===================== */
+
+
+.room-header{
+
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:10;
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+.logo{
+
+
+    margin:25px;
+
+
+    color:white;
+
+
+    font-size:32px;
+
+
+    letter-spacing:6px;
+
+
+    text-shadow:
+
+    0 3px 15px rgba(0,0,0,.5);
+
+
+}
+
+
+
+.back-button{
+
+
+    position:absolute;
+
+    right:30px;
+
+    top:25px;
+
+
+    pointer-events:auto;
+
+
+    border:none;
+
+
+    padding:
+
+    10px 20px;
+
+
+    border-radius:30px;
+
+
+    background:
+
+    rgba(255,255,255,.2);
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- ===================
+     3D Space
+=================== -->
+
+
+<div id="room-container"></div>
+
+
+
+
+
+<!-- ===================
+     UI
+=================== -->
+
+
+<header class="room-header">
+
+
+<div class="logo">
+
+CURA
+
+</div>
+
+
+
+<button
+class="back-button"
+onclick="history.back()">
+
+←
+
+</button>
+
+
+</header>
+
+
+
+
+
+<script type="importmap">
+{
+  "imports": {
+    "three":
+    "https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js"
+  }
+}
+</script>
+
+
+<script type="module"
+src="js/room-engine.js">
+</script>
+
+
+</body>
+
+
+</html>

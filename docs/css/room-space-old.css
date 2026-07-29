@@ -1,0 +1,2308 @@
+
+
+/* =======================================
+   CURA Memory Room v2
+   Core Space System
+======================================= */
+
+
+/* Reset */
+
+* {
+
+    box-sizing:border-box;
+
+}
+
+
+html,
+body {
+
+
+    width:100%;
+
+    height:100%;
+
+    margin:0;
+
+    overflow:hidden;
+
+
+    font-family:
+
+    "Noto Serif TC",
+    "Times New Roman",
+    serif;
+
+
+}
+
+
+
+/* =======================================
+   Memory World
+======================================= */
+
+
+.memory-world {
+
+
+    width:100vw;
+
+    height:100vh;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    background:#171411;
+
+
+}
+
+
+
+
+
+
+/* =======================================
+   Floating Header
+======================================= */
+
+
+.floating-header {
+
+
+    position:absolute;
+
+
+    top:32px;
+
+    left:32px;
+
+
+    right:32px;
+
+
+    z-index:100;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+
+    color:#f7ead6;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+.world-title {
+
+
+    font-size:28px;
+
+
+    letter-spacing:8px;
+
+
+    font-weight:400;
+
+
+}
+
+
+
+
+
+.back-button {
+
+
+    pointer-events:auto;
+
+
+
+    width:48px;
+
+    height:48px;
+
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+
+    text-decoration:none;
+
+
+    color:#f7ead6;
+
+
+
+    font-size:28px;
+
+
+
+}
+
+
+
+
+
+
+/* =======================================
+   Room Scene
+======================================= */
+
+
+.room-scene {
+
+
+    width:100%;
+
+    height:100%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+    justify-content:center;
+
+
+}
+
+
+
+
+
+
+.camera {
+
+
+    width:100%;
+
+    height:100%;
+
+
+
+    perspective:1200px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+    justify-content:center;
+
+
+
+}
+
+/* =======================================
+   3D Room Container
+======================================= */
+
+
+.room {
+
+
+    width:900px;
+
+    height:600px;
+
+
+    position:relative;
+
+
+    transform-style:preserve-3d;
+
+
+
+    transform:
+
+    translateY(40px)
+
+    rotateX(8deg);
+
+
+
+}
+
+
+
+
+
+
+/* =======================================
+   Architecture Layer
+======================================= */
+
+
+.architecture {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    transform-style:preserve-3d;
+
+
+
+}
+
+
+
+
+
+/* =======================================
+   Ceiling
+======================================= */
+
+
+.ceiling {
+
+
+    position:absolute;
+
+
+    width:900px;
+
+    height:600px;
+
+
+
+    top:-300px;
+
+    left:0;
+
+
+
+    background:
+
+    linear-gradient(
+
+        to bottom,
+
+        #eee4d4,
+
+        #d8c8ae
+
+    );
+
+
+
+    transform:
+
+
+    rotateX(90deg);
+
+
+
+    transform-origin:bottom;
+
+
+
+}
+
+
+
+
+
+
+
+/* =======================================
+   Floor
+======================================= */
+
+
+.floor {
+
+
+    position:absolute;
+
+
+    width:900px;
+
+    height:600px;
+
+
+
+    bottom:-300px;
+
+    left:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        rgba(255,255,255,.15)
+
+        1px,
+
+        transparent 1px
+
+    ),
+
+    linear-gradient(
+
+        rgba(255,255,255,.12)
+
+        1px,
+
+        transparent 1px
+
+    ),
+
+    #8b6a48;
+
+
+
+    background-size:
+
+    80px 80px;
+
+
+
+    transform:
+
+
+    rotateX(-90deg);
+
+
+
+    transform-origin:top;
+
+
+
+}
+
+
+
+
+
+
+.floor-light {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    background:
+
+    radial-gradient(
+
+        ellipse,
+
+        rgba(255,220,150,.25),
+
+        transparent 60%
+
+    );
+
+
+
+}
+
+
+
+
+
+
+/* =======================================
+   Walls
+======================================= */
+
+
+.wall {
+
+
+    position:absolute;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #f2e7d5,
+
+        #d7c4a8
+
+    );
+
+
+
+}
+
+
+
+
+
+
+.back-wall {
+
+
+    width:900px;
+
+
+    height:600px;
+
+
+
+    top:0;
+
+    left:0;
+
+
+
+}
+
+
+
+
+
+
+.left-wall {
+
+
+    width:600px;
+
+
+    height:600px;
+
+
+
+    left:-600px;
+
+    top:0;
+
+
+
+    transform:
+
+
+    rotateY(90deg);
+
+
+
+    transform-origin:right;
+
+
+
+}
+
+
+
+
+
+
+
+.right-wall {
+
+
+    width:600px;
+
+
+    height:600px;
+
+
+
+    right:-600px;
+
+    top:0;
+
+
+
+    transform:
+
+
+    rotateY(-90deg);
+
+
+
+    transform-origin:left;
+
+
+
+}
+
+/* =======================================
+   Window System
+======================================= */
+
+
+.window {
+
+
+    position:absolute;
+
+
+    width:220px;
+
+    height:260px;
+
+
+
+    top:120px;
+
+    right:180px;
+
+
+
+    transform-style:preserve-3d;
+
+
+
+}
+
+
+
+
+
+.window-frame {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    border:
+
+    12px solid #5b3b24;
+
+
+
+    background:
+
+    #d8c9ad;
+
+
+
+    box-shadow:
+
+
+    0 15px 40px rgba(0,0,0,.25);
+
+
+
+}
+
+
+
+
+
+.window-glass {
+
+
+    position:absolute;
+
+
+
+    inset:18px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(255,255,255,.7),
+
+        rgba(170,210,220,.35)
+
+    );
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.4);
+
+
+
+}
+
+
+
+
+
+
+
+/* Window light */
+
+.window-light {
+
+
+    position:absolute;
+
+
+
+    width:600px;
+
+    height:400px;
+
+
+
+    left:-200px;
+
+    top:120px;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        ellipse,
+
+        rgba(255,220,150,.45),
+
+        transparent 70%
+
+    );
+
+
+
+    filter:blur(20px);
+
+
+
+    transform:
+
+
+    rotateX(70deg)
+
+    rotateZ(-20deg);
+
+
+
+    pointer-events:none;
+
+
+
+}
+
+
+
+
+
+
+
+/* =======================================
+   Room Ambient Light
+======================================= */
+
+
+.room-scene::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+
+    inset:0;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        ellipse at 65% 35%,
+
+        rgba(255,220,160,.18),
+
+        transparent 50%
+
+    );
+
+
+
+    pointer-events:none;
+
+
+
+}
+
+
+
+
+
+/* =======================================
+   Dust Particles
+======================================= */
+
+
+.dust-particles {
+
+
+    position:absolute;
+
+
+
+    inset:0;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        rgba(255,255,255,.35)
+
+        1px,
+
+        transparent 2px
+
+    );
+
+
+
+    background-size:
+
+    90px 120px;
+
+
+
+    opacity:.25;
+
+
+
+    animation:
+
+
+    dustMove 18s linear infinite;
+
+
+
+}
+
+
+
+
+
+
+@keyframes dustMove {
+
+
+    from {
+
+
+        transform:
+
+        translateY(0);
+
+
+    }
+
+
+
+    to {
+
+
+        transform:
+
+        translateY(-80px);
+
+
+    }
+
+
+}
+
+/* =======================================
+   Furniture Layer
+======================================= */
+
+
+.furniture-layer {
+
+    position:absolute;
+
+    inset:0;
+
+    transform:
+
+    translateZ(0);
+
+}
+
+
+
+
+
+/* =======================================
+   Cabinet
+   Old Pharmacy Wooden Cabinet
+======================================= */
+
+.cabinet {
+
+
+    right:80px;
+
+    bottom:80px;
+
+
+    transform:
+
+
+    translateZ(-80px)
+
+    rotateY(-8deg);
+
+
+
+}
+
+
+
+
+
+
+.cabinet-body {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:100%;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        #4b2d1c,
+
+        #7a4c2b,
+
+        #3a2115
+
+    );
+
+
+
+    border-radius:8px;
+
+
+
+    box-shadow:
+
+
+    inset 0 0 30px rgba(0,0,0,.35),
+
+
+    20px 30px 50px rgba(0,0,0,.35);
+
+
+
+}
+
+
+
+
+
+
+.cabinet-door {
+
+
+    position:absolute;
+
+
+
+    top:25px;
+
+
+
+    width:90px;
+
+    height:330px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #70452a,
+
+        #9a6540
+
+    );
+
+
+
+    border:
+
+    3px solid rgba(40,20,10,.5);
+
+
+
+}
+
+
+
+
+.cabinet-door.left {
+
+
+    left:15px;
+
+
+}
+
+
+
+.cabinet-door.right {
+
+
+    right:15px;
+
+
+}
+
+
+
+
+
+.cabinet-shelves {
+
+
+    position:absolute;
+
+
+
+    inset:40px;
+
+
+
+}
+
+
+
+.shelf {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:4px;
+
+
+
+    background:#2b170d;
+
+
+
+}
+
+
+
+.shelf-1 {
+
+
+    top:80px;
+
+
+}
+
+
+
+.shelf-2 {
+
+
+    top:170px;
+
+
+}
+
+
+
+.shelf-3 {
+
+
+    top:260px;
+
+
+}
+
+/* =======================================
+   Wooden Table
+======================================= */
+
+
+.table {
+
+
+    left:50%;
+
+    bottom:120px;
+
+
+
+    transform:
+
+
+    translateX(-50%)
+
+    translateZ(120px);
+
+
+
+}
+
+
+
+
+
+.table-top {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:100px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #8b5a32,
+
+        #5c351d
+
+    );
+
+
+
+    border-radius:6px;
+
+
+
+    box-shadow:
+
+
+    0 30px 40px rgba(0,0,0,.35);
+
+
+
+}
+
+
+
+
+
+
+.table-leg {
+
+
+    position:absolute;
+
+
+
+    width:25px;
+
+    height:100px;
+
+
+
+    background:#3b2113;
+
+
+
+    top:80px;
+
+
+
+}
+
+
+
+.table-leg.left {
+
+
+    left:40px;
+
+
+}
+
+
+
+
+.table-leg.right {
+
+
+    right:40px;
+
+
+}
+
+/* =======================================
+   Chair
+======================================= */
+
+
+.chair {
+
+
+    left:240px;
+
+    bottom:110px;
+
+
+
+    transform:
+
+
+    translateZ(150px)
+
+    rotateY(8deg);
+
+
+
+}
+
+
+.chair-seat {
+
+
+    position:absolute;
+
+
+
+    width:120px;
+
+    height:25px;
+
+
+
+    bottom:60px;
+
+
+
+    background:#654024;
+
+
+}
+
+
+
+
+.chair-back {
+
+
+    position:absolute;
+
+
+
+    width:120px;
+
+    height:100px;
+
+
+
+    top:0;
+
+
+
+    background:#795034;
+
+
+
+}
+
+
+
+
+
+.chair-leg {
+
+
+    position:absolute;
+
+
+
+    width:15px;
+
+    height:60px;
+
+
+
+    bottom:0;
+
+
+
+    left:50px;
+
+
+
+    background:#3b2113;
+
+
+
+}
+
+/* =======================================
+   Wall Shelf
+======================================= */
+
+
+.shelf {
+
+
+    left:100px;
+
+    top:180px;
+
+
+
+    transform:
+
+
+    translateZ(-120px)
+
+    rotateY(5deg);
+
+
+
+}
+
+
+
+.shelf-board {
+
+
+    width:100%;
+
+    height:12px;
+
+
+
+    background:#57351e;
+
+
+
+    box-shadow:
+
+
+    0 10px 20px rgba(0,0,0,.25);
+
+
+
+}
+
+/* =======================================
+   Memory Object Layer
+======================================= */
+
+
+.memory-layer {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    pointer-events:none;
+
+
+    transform-style:preserve-3d;
+
+
+}
+
+
+
+
+
+.memory-object {
+
+
+    position:absolute;
+
+
+
+    pointer-events:auto;
+
+
+
+    border:none;
+
+    padding:0;
+
+
+
+    background:none;
+
+
+
+    cursor:pointer;
+
+
+
+    color:inherit;
+
+
+
+    transform-style:preserve-3d;
+
+
+
+}
+
+
+.memory-object,
+.furniture {
+
+
+    filter:
+
+    drop-shadow(
+
+        0 25px 25px
+
+        rgba(0,0,0,.3)
+
+    );
+
+
+}
+
+.memory-name {
+
+
+    position:absolute;
+
+
+
+    bottom:-35px;
+
+
+    left:50%;
+
+
+
+    transform:
+
+    translateX(-50%);
+
+
+
+    white-space:nowrap;
+
+
+
+    font-size:14px;
+
+
+
+    letter-spacing:2px;
+
+
+
+    color:#f5ead8;
+
+
+
+    opacity:0;
+
+
+
+    transition:.35s;
+
+
+
+    text-shadow:
+
+    0 2px 10px rgba(0,0,0,.6);
+
+
+
+}
+
+
+
+
+.memory-object:hover .memory-name {
+
+
+    opacity:1;
+
+
+}
+
+/* =======================================
+   Origin Journal
+======================================= */
+
+
+.origin-journal {
+
+
+    left:50%;
+
+
+    bottom:270px;
+
+
+
+    transform:
+
+
+    translateX(-50%)
+
+    translateZ(160px)
+
+    rotateX(15deg);
+
+
+
+}
+
+
+
+.book-cover {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:100%;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #4b2b1c,
+
+        #8a5a38
+
+    );
+
+
+
+    border-radius:4px;
+
+
+
+    box-shadow:
+
+
+    8px 12px 25px rgba(0,0,0,.35);
+
+
+
+}
+
+
+
+
+.book-pages {
+
+
+    position:absolute;
+
+
+
+    width:85%;
+
+    height:90%;
+
+
+
+    right:-8px;
+
+    top:5%;
+
+
+
+    background:#e9ddc7;
+
+
+
+}
+
+/* =======================================
+   Character Photo Frame
+======================================= */
+
+
+.photo-frame {
+
+
+    scale:.9;
+
+}
+
+
+.cabinet {
+
+
+    scale:1.05;
+
+
+}
+
+
+.shelf {
+
+
+    scale:.85;
+
+
+}
+
+
+
+.frame-border {
+
+
+    position:absolute;
+
+
+
+    inset:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #8b633c,
+
+        #4d301b
+
+    );
+
+
+
+    padding:12px;
+
+
+
+}
+
+
+
+.photo-image {
+
+
+    width:100%;
+
+    height:100%;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #b9a58c,
+
+        #625448
+
+    );
+
+
+
+}
+
+/* =======================================
+   Memory Box
+======================================= */
+
+
+.medicine-box {
+
+
+    right:300px;
+
+    bottom:250px;
+
+
+
+    transform:
+
+
+    translateZ(40px);
+
+
+
+}
+
+
+
+
+.box-body {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:60px;
+
+
+
+    bottom:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #c8a96b,
+
+        #806038
+
+    );
+
+
+
+    border-radius:6px;
+
+
+
+}
+
+
+
+
+.box-lid {
+
+
+    position:absolute;
+
+
+
+    width:100%;
+
+    height:20px;
+
+
+
+    top:0;
+
+
+
+    background:#9b7947;
+
+
+
+}
+
+/* =======================================
+   Taste Memory
+======================================= */
+
+
+.taste-memory {
+
+
+    left:50%;
+
+    bottom:230px;
+
+
+
+    transform:
+
+
+    translateX(-50%)
+
+    translateZ(180px);
+
+
+
+}
+
+
+
+.dish {
+
+
+    position:absolute;
+
+
+
+    width:130px;
+
+    height:130px;
+
+
+
+    border-radius:50%;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        #f4ead8,
+
+        #c7b9a0
+
+    );
+
+
+
+}
+
+
+
+
+.food-shape {
+
+
+    position:absolute;
+
+
+
+    width:90px;
+
+    height:90px;
+
+
+
+    left:20px;
+
+    top:20px;
+
+
+
+    border-radius:50%;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        #d46f35,
+
+        #8c3d20
+
+    );
+
+
+
+}
+
+/* =======================================
+   Memory Object Hover Effect
+======================================= */
+
+
+.memory-object::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+
+    inset:-20px;
+
+
+
+    border-radius:50%;
+
+
+
+    opacity:0;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        rgba(255,220,150,.35),
+
+        transparent 70%
+
+    );
+
+
+
+    transition:.35s;
+
+
+
+    z-index:-1;
+
+
+}
+
+
+
+.memory-object:hover::after {
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+.memory-object:hover {
+
+
+    transform:
+
+
+    translateY(-8px);
+
+
+
+}
+
+/* =======================================
+   Camera Motion System
+======================================= */
+
+
+.camera {
+
+
+    transition:
+
+    transform 1.2s cubic-bezier(.2,.8,.2,1);
+
+
+
+}
+
+
+
+
+.room {
+
+
+    animation:
+
+    roomBreathing 8s ease-in-out infinite;
+
+
+
+}
+
+
+
+
+
+@keyframes roomBreathing {
+
+
+    0% {
+
+
+        transform:
+
+        translateY(40px)
+
+        rotateX(8deg)
+
+        scale(1);
+
+
+
+    }
+
+
+    50% {
+
+
+        transform:
+
+        translateY(36px)
+
+        rotateX(8deg)
+
+        scale(1.002);
+
+
+
+    }
+
+
+    100% {
+
+
+        transform:
+
+        translateY(40px)
+
+        rotateX(8deg)
+
+        scale(1);
+
+
+
+    }
+
+
+}
+
+/* =======================================
+   Moving Sunlight
+======================================= */
+
+
+.window-light {
+
+
+    animation:
+
+    sunlightMove 12s ease-in-out infinite;
+
+
+
+}
+
+
+
+@keyframes sunlightMove {
+
+
+    0%,100% {
+
+
+        opacity:.45;
+
+
+        transform:
+
+        rotateX(70deg)
+
+        rotateZ(-20deg)
+
+        translateX(0);
+
+
+
+    }
+
+
+
+    50% {
+
+
+        opacity:.65;
+
+
+
+        transform:
+
+        rotateX(70deg)
+
+        rotateZ(-20deg)
+
+        translateX(30px);
+
+
+
+    }
+
+
+}
+
+.dust-particles {
+
+
+    animation:
+
+    dustMove 18s linear infinite;
+
+
+
+}
+
+
+
+
+
+@keyframes dustMove {
+
+
+    from {
+
+
+        transform:
+
+        translateY(0);
+
+
+
+    }
+
+
+
+    to {
+
+
+        transform:
+
+        translateY(-100px);
+
+
+
+    }
+
+
+}
+
+/* =======================================
+   Idle Memory Animation
+======================================= */
+
+
+.origin-journal,
+.photo-frame,
+.medicine-box,
+.taste-memory {
+
+
+    animation:
+
+    memoryIdle 6s ease-in-out infinite;
+
+
+
+}
+
+
+
+@keyframes memoryIdle {
+
+
+    0%,100% {
+
+
+        translate:
+
+        0 0;
+
+
+
+    }
+
+
+
+    50% {
+
+
+        translate:
+
+        0 -4px;
+
+
+
+    }
+
+
+}
+
+.memory-object:hover {
+
+
+    animation:none;
+
+
+    transform:
+
+    translateY(-12px);
+
+
+
+}
+
+/* =======================================
+   Responsive
+======================================= */
+
+
+@media(max-width:900px){
+
+
+    .room {
+
+
+        width:700px;
+
+        height:480px;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+    .room {
+
+
+        width:520px;
+
+        height:360px;
+
+
+
+    }
+
+
+
+
+    .floating-header {
+
+
+        top:16px;
+
+        left:16px;
+
+        right:16px;
+
+
+
+    }
+
+
+
+}
+
+/* =======================================
+   Spatial Depth System
+======================================= */
+
+
+.room,
+.architecture,
+.furniture-layer,
+.memory-layer,
+.decoration-layer,
+.effects-layer {
+
+    transform-style:preserve-3d;
+
+}
+

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alive Story | CURA Pizza</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/as.css">
+<link rel="stylesheet" href="css/bird-chat.css">
+
+</head>
+
+
+<body>
+
+
+<!-- Header -->
+
+<header class="alive-header">
+
+    <div class="logo">
+        CURA
+    </div>
+
+
+
+    <button class="menu-btn">
+        ☰
+    </button>
+
+</header>
+
+
+
+
+
+<!-- Hero -->
+
+<section class="alive-hero">
+
+
+    <h1>
+        Alive Story
+    </h1>
+
+
+    <p>
+        Explore CURA's hidden memories.
+        <br>
+        探索藏在空間中的故事、人物與地方記憶。
+    </p>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- Main Entry -->
+
+<section class="alive-entry" id="alive-entry">
+
+
+
+    <!-- Scan -->
+
+    <div class="entry-card">
+
+
+        <div class="icon">
+            📷
+        </div>
+
+
+        <h2>
+            Scan Memory
+        </h2>
+
+
+        <p>
+            掃描店內實體物件，
+            <br>
+            解鎖隱藏故事與記憶。
+        </p>
+
+
+        <a href="scan.html">
+            開始探索
+        </a>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Space -->
+
+    <div class="entry-card">
+
+
+        <div class="icon">
+            🏠
+        </div>
+
+
+        <h2>
+            My Memory Space
+        </h2>
+
+
+        <p>
+            建立你的 CURA 記憶空間，
+            <br>
+            收藏探索內容。
+        </p>
+
+
+        <a href="space.html">
+            進入空間
+        </a>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Tutorial -->
+
+    <div class="entry-card"
+         onclick="openTutorial()">
+
+
+
+        <div class="icon">
+            ❔
+        </div>
+
+
+        <h2>
+            How It Works
+        </h2>
+
+
+        <p>
+            了解 Alive Story
+            <br>
+            如何探索與收藏。
+        </p>
+
+
+
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- Static Brand Story -->
+
+<section class="brand-story">
+
+
+<h2>
+CURA Memory
+</h2>
+
+
+<p>
+從老藥局的照護精神，
+到拿波里披薩文化，
+CURA 將地方、工藝與人的記憶重新連結。
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- Tutorial Modal -->
+
+
+<div class="tutorial-overlay" id="tutorialOverlay">
+
+
+<div class="tutorial-box">
+
+
+<button class="close-btn"
+onclick="closeTutorial()">
+×
+</button>
+
+
+
+<h2>
+How Alive Story Works
+</h2>
+
+
+<div class="tutorial-step">
+
+<h3>
+01 Explore
+</h3>
+
+<p>
+探索店內隱藏的記憶點。
+</p>
+
+</div>
+
+
+
+<div class="tutorial-step">
+
+<h3>
+02 Collect
+</h3>
+
+<p>
+收藏人物、物件與故事。
+</p>
+
+</div>
+
+
+
+<div class="tutorial-step">
+
+<h3>
+03 Discover
+</h3>
+
+<p>
+AI 根據互動紀錄理解你的體驗偏好。
+</p>
+
+</div>
+
+
+
+<div class="tutorial-step">
+
+<h3>
+04 Personalize
+</h3>
+
+<p>
+建立屬於你的 CURA 記憶空間。
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+function openTutorial(){
+
+document
+.getElementById("tutorialOverlay")
+.style.display="flex";
+
+}
+
+
+
+function closeTutorial(){
+
+document
+.getElementById("tutorialOverlay")
+.style.display="none";
+
+}
+
+
+
+</script>
+
+<script src="js/bird-chat.js"></script>
+
+</body>
+
+
+</html>

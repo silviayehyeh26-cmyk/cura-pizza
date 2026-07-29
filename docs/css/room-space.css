@@ -1,0 +1,392 @@
+* {
+
+    box-sizing:border-box;
+
+}
+
+
+
+html,
+body {
+
+
+    width:100%;
+
+    height:100%;
+
+
+    margin:0;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+.memory-room {
+
+
+    position:relative;
+
+
+    width:100vw;
+
+    height:100vh;
+
+
+    overflow:hidden;
+
+
+    background:#e9dcc8;
+
+
+}
+
+.room-background {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+}
+
+
+
+
+
+.wall {
+
+
+    position:absolute;
+
+    z-index:1;
+    width:100%;
+
+
+    height:65%;
+
+
+    top:0;
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #f4eadb,
+
+        #dfcdb2
+
+    );
+
+
+}
+
+.floor {
+
+
+    position:absolute;
+   z-index:0;
+
+    width:100%;
+
+
+    height:35%;
+
+
+    bottom:0;
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #b88a5c,
+
+        #805437
+
+    );
+
+
+}
+
+.window {
+
+
+    position:absolute;
+
+
+    z-index:3;
+    width:220px;
+
+
+    height:260px;
+
+
+    top:80px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #d9eff0,
+
+        #9fc5c9
+
+    );
+
+
+    border:
+
+    12px solid #7a5535;
+
+
+}
+
+.room-light {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+    z-index:10;
+    background:
+
+
+    radial-gradient(
+
+        ellipse at 50% 20%,
+
+        rgba(255,225,170,.45),
+
+        transparent 45%
+
+    );
+
+
+    pointer-events:none;
+
+
+}
+
+.room-furniture {
+
+
+    position:absolute;
+
+
+    inset:0;
+    z-index:5;
+
+    pointer-events:none;
+
+
+}
+
+.block-table,
+.block-chair,
+.block-cabinet {
+
+    pointer-events:auto;
+
+}
+
+.block-cabinet {
+
+
+    position:absolute;
+
+
+    width:180px;
+
+    height:300px;
+
+
+    right:120px;
+
+
+    top:180px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        #70472d,
+
+        #a8794f
+
+    );
+
+
+
+    border-radius:8px;
+
+
+    box-shadow:
+
+
+    0 25px 40px rgba(0,0,0,.25);
+
+
+
+}
+
+.block-table {
+
+
+    position:absolute;
+
+
+    width:260px;
+
+
+    height:120px;
+
+
+    left:50%;
+
+
+    bottom:180px;
+
+
+    transform:
+
+
+    translateX(-50%);
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #9b6b45,
+
+        #70452d
+
+    );
+
+
+
+    border-radius:8px;
+
+
+    box-shadow:
+
+
+    0 20px 35px rgba(0,0,0,.25);
+
+
+
+}
+
+.block-table::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:40px;
+
+
+    height:90px;
+
+
+    left:110px;
+
+
+    top:100px;
+
+
+    background:#5b3825;
+
+
+
+}
+
+.block-chair {
+
+
+    position:absolute;
+
+
+    width:100px;
+
+
+    height:120px;
+
+    left:50%;
+
+
+    bottom:70px;
+
+
+    transform:
+
+    translateX(-50%);
+
+
+
+    bottom:100px;
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #8a6042,
+
+        #533522
+
+    );
+
+
+    border-radius:10px;
+
+
+    box-shadow:
+
+
+    0 15px 30px rgba(0,0,0,.25);
+
+
+
+}
