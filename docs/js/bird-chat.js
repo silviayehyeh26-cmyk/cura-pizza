@@ -369,7 +369,7 @@ function handleButton(data){
 
 
         window.open(
-            "https://maps.google.com",
+            "https://www.bing.com/maps/search?FORM=HDRSC6&q=cura+pizza&cp=25.025490%7E121.496643&lvl=16&style=r",
             "_blank"
         );
 
@@ -383,7 +383,7 @@ function handleButton(data){
 
 
         window.open(
-        "https://inline.app",
+        "https://inline.app/booking/-M75spIxyMI8qhM-i7et:inline-live-1/-M75sq9x3lFke2u1NUQ-?language=zh-tw",
         "_blank"
         );
 
