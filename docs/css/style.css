@@ -1228,7 +1228,7 @@ color:var(--color-secondary);
 
     .menu-panel{
 
-        width:45%;
+        width: min-content;
 
     }
 
