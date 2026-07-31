@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Behavior Lab | CURA Intelligence</title>
+
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Behavior Lab 專用 -->
+    <link rel="stylesheet" href="css/behavior-lab.css">
+
+</head>
+
+
+<body>
+
+
+<header class="lab-header">
+
+    <div class="lab-logo">
+        AI Behavior Lab
+        <span>CURA Intelligence Research Platform</span>
+    </div>
+
+
+    <div class="lab-status">
+
+        <div>
+            <span class="status-dot"></span>
+            Simulation Ready
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="lab-container">
+
+
+    <!-- 左側控制區 -->
+    <section class="lab-panel control-panel">
+
+
+        <h2>
+            Simulation Manager
+            <small>模擬管理器</small>
+        </h2>
+
+
+        <button id="startSimulation">
+            ▶ Start Simulation
+        </button>
+
+
+        <button id="pauseSimulation">
+            ⏸ Pause
+        </button>
+
+
+        <button id="resetSimulation">
+            ↻ Reset
+        </button>
+
+
+
+        <div class="setting-box">
+
+    <h3>Scenario 情境</h3>
+
+
+    <select id="scenarioSelect">
+
+
+        <option value="Normal">
+            Normal Dining 平日情境
+        </option>
+
+
+        <option value="AI_Assist">
+            AI Decision Support AI輔助情境
+        </option>
+
+
+        <option value="Promotion">
+            Promotion 促銷情境
+        </option>
+
+
+        <option value="Limited_Menu">
+            Limited Menu 限制菜單情境
+        </option>
+
+
+    </select>
+
+   
+
+
+    <p>
+
+Current:
+
+<span id="currentScenario">
+Normal Dining
+</span>
+
+</p>
+
+ <div id="agentInspector"
+class="agent-inspector hidden">
+
+
+<h3 id="inspectorHeader">
+Agent Detail
+</h3>
+
+<button id="followAgentBtn">
+
+Follow Agent
+
+</button>
+
+
+        <div id="agentDetail">
+
+
+<div class="agent-section">
+
+<h4>
+Basic Information
+</h4>
+
+
+<p id="agentBasic">
+
+Waiting...
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="agent-section">
+
+<h4>
+Persona
+</h4>
+
+
+<p id="agentPersona">
+
+Waiting...
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="agent-section">
+
+<h4>
+Decision Path
+</h4>
+
+
+<div id="agentPath"
+class="decision-path">
+
+
+No Decision
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="agent-section">
+
+<h4>
+Cognitive State
+</h4>
+
+
+<div>
+
+Cognitive Load
+
+<div class="bar">
+
+<div id="loadBar"></div>
+
+</div>
+
+
+</div>
+
+
+
+<div>
+
+AI Trust
+
+<div class="bar">
+
+<div id="trustBar"></div>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="agent-section">
+
+<h4>
+Recent Behavior
+</h4>
+
+
+<div id="agentHistory">
+
+No History
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+    </div>
+
+</div>
+
+
+    </section>
+
+
+
+
+
+    <!-- 中間模擬區 -->
+    <section class="lab-panel simulation-panel">
+
+
+        <h2>
+            Agent Simulation
+            <small>代理人模擬</small>
+        </h2>
+
+
+
+        <div class="agent-world">
+
+
+    <div class="world-toolbar">
+
+
+        <button id="zoomInBtn">
+
+            ＋
+
+        </button>
+
+
+
+        <button id="zoomOutBtn">
+
+            −
+
+        </button>
+
+
+
+
+        <button id="fullscreenBtn">
+
+            ⛶ Fullscreen
+
+        </button>
+
+
+
+
+        <button id="gridToggleBtn">
+
+            Grid
+
+        </button>
+
+
+
+
+        <button id="labelToggleBtn">
+
+            Label
+
+        </button>
+
+
+    </div>
+
+
+
+
+    <canvas id="behaviorCanvas"></canvas>
+
+
+
+
+    <div class="camera-info">
+
+
+        Zoom:
+
+        <span id="zoomValue">
+
+            0.25
+
+        </span>
+
+
+
+        <br>
+
+
+
+        Camera:
+
+        <span id="cameraPosition">
+
+            2500 , 2500
+
+        </span>
+
+
+    </div>
+
+
+
+
+    <div class="mini-map">
+
+
+        Mini Map
+
+
+    </div>
+
+
+</div>
+
+
+
+        <div class="simulation-info">
+
+
+
+            <div>
+    Agents
+    <strong id="agentCount">
+        0
+    </strong>
+</div>
+
+
+<div>
+    Time Step
+    <strong id="timeStep">
+        0
+    </strong>
+</div>
+
+
+<div>
+    Decisions
+    <strong id="decisionCount">
+        0
+    </strong>
+</div>
+
+
+<div>
+    Confidence
+    <strong id="confidenceValue">
+        0
+    </strong>
+</div>
+
+
+<div>
+    Cognitive Load
+    <strong id="loadValue">
+        0
+    </strong>
+</div>
+
+
+<div>
+    Scenario
+    <strong id="currentScenario">
+        Normal
+    </strong>
+</div>
+
+            
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- 右側分析 -->
+    <section class="lab-panel analysis-panel">
+
+
+        <h2>
+            Decision Analysis
+            <small>決策分析</small>
+        </h2>
+
+
+
+        <div class="chart-placeholder">
+
+<h3>
+Decision Distribution
+</h3>
+
+
+<pre id="decisionChart">
+
+Waiting...
+
+</pre>
+
+
+</div>
+
+
+        <div class="chart-placeholder">
+
+
+<h3>
+Cognitive Load
+</h3>
+
+
+<pre id="loadChart">
+
+Waiting...
+
+</pre>
+
+
+</div>
+
+<div class="timeline-panel">
+
+
+<h3>
+Behavior Timeline
+</h3>
+
+
+<div id="timeline">
+
+Waiting...
+
+</div>
+
+
+</div>
+
+
+    </section>
+
+
+
+</main>
+
+
+
+
+<script src="data/pizza-data.js"></script>
+
+<script src="data/behavior-data.js"></script>
+
+<script src="data/behavior-menu-data.js"></script>
+
+<script type="module" src="js/behavior-lab/lab-app.js"></script>
+
+
+</body>
+
+</html>

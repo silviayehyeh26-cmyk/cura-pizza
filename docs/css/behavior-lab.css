@@ -1,0 +1,837 @@
+body {
+
+    background:#f7f5f0;
+
+}
+
+
+
+.lab-header {
+
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    background:white;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+
+
+.lab-logo {
+
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+
+
+.lab-logo span {
+
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:400;
+
+    opacity:.6;
+
+}
+
+
+
+
+
+.status-dot {
+
+
+    width:10px;
+
+    height:10px;
+
+    background:#4caf50;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+}
+
+
+
+
+
+.lab-container{
+
+    display:grid;
+
+    grid-template-columns:
+    minmax(220px,260px)
+    minmax(500px,1fr)
+    minmax(280px,320px);
+
+    gap:20px;
+
+}
+
+
+
+
+
+.lab-panel {
+
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.05);
+
+    overflow:visible;
+
+}
+
+
+.lab-panel h2 {
+
+
+    margin-top:0;
+
+    font-size:20px;
+
+}
+
+
+
+.lab-panel small {
+
+
+    display:block;
+
+    font-size:12px;
+
+    opacity:.5;
+
+}
+
+
+
+
+
+
+button {
+
+
+    width:100%;
+
+    padding:12px;
+
+    margin:8px 0;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+
+
+#startSimulation {
+
+
+    background:#333;
+
+    color:white;
+
+}
+
+
+
+
+.setting-box {
+
+
+    margin-top:30px;
+
+}
+
+
+
+.setting-box select {
+
+
+    width:100%;
+
+
+    min-height:42px;
+
+
+    padding:10px 12px;
+
+
+    background:white;
+
+
+    color:#333;
+
+
+    border:1px solid #ddd;
+
+
+    border-radius:10px;
+
+
+    font-size:15px;
+
+
+}
+
+.setting-box {
+
+
+    position:relative;
+
+
+    z-index:10;
+
+
+}
+
+
+
+.agent-world {
+
+
+    height:500px;
+
+    width:100%;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+
+    radial-gradient(circle,#ddd 1px,transparent 1px);
+
+    background-size:25px 25px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+}
+
+.agent-world{
+
+    position:relative;
+
+}
+
+
+
+#behaviorCanvas{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+
+
+.agent-inspector{
+
+
+margin-top:30px;
+
+
+background:#faf8f3;
+
+
+border-radius:15px;
+
+
+padding:15px;
+
+
+box-shadow:
+0 5px 20px rgba(0,0,0,.08);
+
+
+}
+
+
+.agent-inspector.hidden{
+
+display:none;
+
+}
+
+.agent-inspector h3{
+
+    cursor:move;
+
+    user-select:none;
+
+}
+
+.agent-section{
+
+
+margin-top:15px;
+
+
+padding-bottom:10px;
+
+
+border-bottom:1px solid #eee;
+
+
+}
+
+
+.agent-section h4{
+
+
+font-size:14px;
+
+
+margin-bottom:8px;
+
+
+}
+
+
+
+.bar{
+
+
+height:8px;
+
+
+background:#eee;
+
+
+border-radius:10px;
+
+
+overflow:hidden;
+
+
+margin:5px 0 10px;
+
+
+}
+
+
+
+.bar div{
+
+
+height:100%;
+
+
+width:0%;
+
+
+background:#4caf50;
+
+
+transition:.3s;
+
+
+}
+
+#behaviorCanvas{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+
+
+.world-text {
+
+
+    opacity:.4;
+
+}
+
+
+
+
+
+.simulation-info {
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+
+.simulation-info div {
+
+
+    text-align:center;
+
+}
+
+
+
+.simulation-info strong {
+
+
+    display:block;
+
+    font-size:24px;
+
+}
+
+
+
+
+
+.chart-placeholder {
+
+    min-height:160px;
+
+    margin-bottom:20px;
+
+    background:#fafafa;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+
+.chart-placeholder h3 {
+
+    margin-top:0;
+
+    font-size:16px;
+
+}
+
+.timeline-panel {
+
+
+    background:#fafafa;
+
+    border-radius:15px;
+
+    padding:20px;
+
+
+}
+
+
+.timeline-panel h3 {
+
+
+    margin-top:0;
+
+
+}
+
+
+
+.timeline-item {
+
+
+    padding:10px;
+
+    margin-bottom:8px;
+
+    background:white;
+
+    border-radius:10px;
+
+    border-left:4px solid #333;
+
+
+}
+
+#scenarioDisplay {
+
+
+    font-weight:600;
+
+}
+
+#followAgentBtn{
+
+margin-top:10px;
+
+}
+
+.decision-path{
+
+
+padding-left:10px;
+
+
+}
+
+
+
+.path-item{
+
+
+position:relative;
+
+
+padding-left:25px;
+
+
+margin:12px 0;
+
+
+font-size:13px;
+
+
+}
+
+
+
+.path-item::before{
+
+
+content:"";
+
+
+position:absolute;
+
+
+left:0;
+
+
+top:5px;
+
+
+width:12px;
+
+
+height:12px;
+
+
+border-radius:50%;
+
+
+}
+
+
+
+.path-observe::before{
+
+background:#2196F3;
+
+}
+
+
+.path-evaluate::before{
+
+background:#FFC107;
+
+}
+
+
+.path-compare::before{
+
+background:#FF9800;
+
+}
+
+
+.path-ai::before{
+
+background:#9C27B0;
+
+}
+
+
+.path-select::before{
+
+background:#4CAF50;
+
+}
+
+
+
+.path-complete::before{
+
+background:#607D8B;
+
+}
+
+
+
+.path-item::after{
+
+
+content:"";
+
+
+position:absolute;
+
+
+left:4px;
+
+
+top:18px;
+
+
+width:2px;
+
+
+height:25px;
+
+
+background:#ddd;
+
+
+}
+
+
+
+.path-item:last-child::after{
+
+
+display:none;
+
+
+}
+
+@media(max-width:900px){
+
+
+    .lab-container{
+
+
+        display:flex;
+
+        overflow-x:auto;
+
+        gap:20px;
+
+        padding:20px;
+
+
+    }
+
+
+
+    .control-panel{
+
+
+        flex:0 0 260px;
+
+
+    }
+
+
+
+    .simulation-panel{
+
+
+        flex:0 0 700px;
+
+
+    }
+
+
+
+    .analysis-panel{
+
+
+        flex:0 0 320px;
+
+
+    }
+
+
+}
+
+
+/*
+================================
+
+World Toolbar
+
+================================
+*/
+
+
+.world-toolbar{
+
+
+position:absolute;
+
+
+top:10px;
+
+
+left:10px;
+
+
+z-index:10;
+
+
+display:flex;
+
+
+gap:8px;
+
+
+}
+
+
+
+
+.world-toolbar button{
+
+
+padding:6px 12px;
+
+
+border-radius:8px;
+
+
+border:none;
+
+
+cursor:pointer;
+
+
+background:white;
+
+
+box-shadow:
+0 2px 8px rgba(0,0,0,0.15);
+
+
+}
+
+
+
+
+
+
+.camera-info{
+
+
+position:absolute;
+
+
+bottom:10px;
+
+
+left:10px;
+
+
+background:
+rgba(255,255,255,0.85);
+
+
+padding:8px 12px;
+
+
+border-radius:8px;
+
+
+font-size:13px;
+
+
+z-index:5;
+
+
+}
+
+
+
+
+
+
+
+.mini-map{
+
+
+position:absolute;
+
+
+right:15px;
+
+
+bottom:15px;
+
+
+width:150px;
+
+
+height:150px;
+
+
+background:
+rgba(255,255,255,0.8);
+
+
+border:
+
+1px solid #ddd;
+
+
+border-radius:10px;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+font-size:13px;
+
+
+}
