@@ -218,25 +218,19 @@ Render
 render(agentStates){
 
 
-
     this.agents =
     agentStates;
 
 
 
-    /*
-    將 AgentState 轉回真正 Agent
-    給 Renderer
-    */
-
-
     this.world.agents =
-agentStates;
+    agentStates.map(
+        state=>state
+    );
 
 
 
     this.camera.update();
-
 
 
 
@@ -247,7 +241,6 @@ agentStates;
         this.camera
 
     );
-
 
 
 }

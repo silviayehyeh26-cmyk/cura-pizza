@@ -7,7 +7,9 @@ AI Behavior Lab
 
 Visualization Data Layer
 
-Version 2.0
+Version 3.2
+
+同步 Agent 與 Visualization
 
 ================================
 */
@@ -19,105 +21,118 @@ export class AgentState {
 
 constructor(
     agent,
-    result,
-    timeStep,
-    scenario
+    result={},
+    timeStep=0,
+    scenario=null
 ){
 
+
+
 this.agent = agent;
+
+
+
+// =========================
+// Position Reference
+// =========================
 
 if(!agent.position){
 
     agent.position={
 
-        x:Math.random()*5000,
+        x:
+        Math.random()*5000,
 
-        y:Math.random()*5000
+        y:
+        Math.random()*5000
 
     };
 
 }
 
 
+
 this.position =
 agent.position;
 
-    // =========================
-    // Basic Identity
-    // =========================
-
-
-    this.id =
-    agent.id;
 
 
 
-    this.timeStep =
-    timeStep;
+// =========================
+// Identity
+// =========================
+
+
+this.id =
+agent.id;
+
+
+this.timeStep =
+timeStep;
+
+
+this.scenario =
+scenario;
 
 
 
-    this.scenario =
-    scenario;
+
+// =========================
+// Decision
+// =========================
+
+
+this.choice =
+result.choice
+||
+"Unknown";
+
+
+this.confidence =
+result.confidence
+||
+0;
+
+
+this.cognitiveLoad =
+result.cognitiveLoad
+||
+0;
 
 
 
-    // =========================
-    // Decision Data
-    // =========================
 
 
-    this.choice =
-    result.choice
-    ||
-    "Unknown";
+// =========================
+// Personality
+// =========================
 
 
-
-    this.confidence =
-    result.confidence
-    ||
-    0;
+this.curiosity =
+agent.curiosity
+||
+Math.random();
 
 
 
-    this.cognitiveLoad =
-    result.cognitiveLoad
-    ||
-    0;
+this.aiTrust =
+agent.aiTrust
+||
+Math.random();
 
 
 
-    // =========================
-    // Agent Personality
-    // =========================
-
-
-    this.curiosity =
-    agent.curiosity
-    ||
-    Math.random();
+this.priceSensitivity =
+agent.priceSensitivity
+||
+Math.random();
 
 
 
-    this.aiTrust =
-    agent.aiTrust
-    ||
-    Math.random();
-
-
-
-    this.priceSensitivity =
-    agent.priceSensitivity
-    ||
-    Math.random();
-
-
-
-    this.brandTrust =
-    agent.brandTrust
-    ||
-    Math.random();
+this.brandTrust =
+agent.brandTrust
+||
+Math.random();
 
 
 
@@ -125,47 +140,91 @@ agent.position;
 
 
 // =========================
-// Link To Real Agent Position
+// Behavior
 // =========================
 
-this.agent = agent;
+
+this.status =
+this.generateStatus(agent);
+
+
+
+this.shape =
+this.generateShape(agent);
 
 
 
 
 
-    // =========================
-    // Behavior Status
-    // =========================
+// =========================
+// Size
+// =========================
 
 
-    this.status =
-    this.generateStatus(agent);
+this.importance =
+this.calculateImportance();
 
+// =========================
+// Behavior Spectrum
+// 行為強度 0~1
+// =========================
 
-
-    // =========================
-    // Shape Category
-    // =========================
-
-
-    this.shape =
-    this.generateShape(agent);
-
+this.behaviorIntensity =
+this.calculateBehaviorIntensity();
 
 
 
-    // =========================
-    // Size / Importance
-    // =========================
 
 
-    this.importance =
-    this.calculateImportance();
+// =========================
+// Visualization
+// =========================
+
+
+this.sync();
 
 
 
 }
+
+
+
+
+
+
+
+
+
+/*
+================================
+
+Sync Real Agent
+
+================================
+*/
+
+
+sync(){
+
+
+this.position =
+this.agent.position;
+
+
+this.status =
+this.agent.status
+||
+this.generateStatus(this.agent);
+
+
+
+this.shape =
+this.shape;
+
+
+
+}
+
 
 
 
@@ -179,8 +238,6 @@ this.agent = agent;
 
 Generate Status
 
-決策狀態
-
 ================================
 */
 
@@ -189,58 +246,22 @@ generateStatus(agent){
 
 
 
-    let curiosity =
-    agent.curiosity
-    ||
-    0.5;
+if(
+agent.journey &&
+agent.journey.state
+){
+
+return agent.journey.state;
+
+}
 
 
 
-    let aiTrust =
-    agent.aiTrust
-    ||
-    0.5;
-
-
-
-    let price =
-    agent.priceSensitivity
-    ||
-    0.5;
-
-
-
-
-
-    if(aiTrust > 0.75){
-
-        return "Thinking";
-
-    }
-
-
-
-    if(curiosity > 0.75){
-
-        return "Exploring";
-
-    }
-
-
-
-    if(price > 0.75){
-
-        return "Waiting";
-
-    }
-
-
-
-    return "Ordering";
-
+return "Entering";
 
 
 }
+
 
 
 
@@ -254,8 +275,6 @@ generateStatus(agent){
 
 Generate Shape
 
-Agent 類型
-
 ================================
 */
 
@@ -264,60 +283,69 @@ generateShape(agent){
 
 
 let curiosity =
-(agent.curiosity || 5) / 10;
+Number(agent.curiosity) || 0.5;
 
 
 let trust =
-agent.brandTrust || 0.5;
+Number(agent.brandTrust) || 0.5;
 
 
 let price =
-(agent.priceSensitivity || 5) / 10;
+Number(agent.priceSensitivity) || 0.5;
 
 
 
-// 探索型
-if(
-curiosity > 0.7
-&&
-curiosity > trust
-){
+// 如果數值是 0~10
+if(curiosity > 1)
+curiosity /= 10;
 
-    return "triangle";
+
+if(price > 1)
+price /= 10;
+
+
+
+
+let score = {
+
+
+triangle:
+curiosity,
+
+
+diamond:
+trust,
+
+
+square:
+price,
+
+
+circle:
+0.5
+
+
+
+};
+
+
+
+
+// 找最高人格
+
+let type =
+Object.keys(score)
+.sort(
+(a,b)=>
+score[b]-score[a]
+)[0];
+
+
+
+return type;
+
 
 }
-
-
-
-// 品牌信任型
-if(
-trust > 0.7
-){
-
-    return "diamond";
-
-}
-
-
-
-// 價格敏感型
-if(
-price > 0.6
-){
-
-    return "square";
-
-}
-
-
-
-// 一般消費者
-
-return "circle";
-
-
-}
-
 
 
 
@@ -332,10 +360,6 @@ return "circle";
 
 Importance
 
-影響程度
-
-未來決定大小
-
 ================================
 */
 
@@ -343,28 +367,34 @@ Importance
 calculateImportance(){
 
 
-    return Number(
 
-        (
+return Number(
 
-        this.confidence * 0.4
+(
 
-        +
+this.confidence*0.4
 
-        this.aiTrust * 0.3
++
 
-        +
+this.aiTrust*0.3
 
-        this.curiosity * 0.3
++
 
-        )
+this.curiosity*0.3
 
-        .toFixed(2)
+)
 
-    );
+.toFixed(2)
+
+);
+
 
 
 }
+
+
+
+
 
 
 
@@ -373,9 +403,7 @@ calculateImportance(){
 /*
 ================================
 
-Update Position
-
-給 Movement Engine 使用
+External Update
 
 ================================
 */
@@ -384,18 +412,85 @@ Update Position
 updatePosition(dx,dy){
 
 
-    this.position.x += dx;
+this.agent.position.x += dx;
 
 
-    this.position.y += dy;
+this.agent.position.y += dy;
 
+
+
+this.position =
+this.agent.position;
 
 
 }
 
+calculateBehaviorIntensity(){
+
+
+let normalize=(v)=>{
+
+
+if(v>1)
+return v/10;
+
+
+return v || 0;
+
+
+};
 
 
 
+let values=[
+
+
+normalize(this.confidence),
+
+
+normalize(this.cognitiveLoad),
+
+
+normalize(this.curiosity),
+
+
+normalize(this.aiTrust),
+
+
+normalize(this.priceSensitivity),
+
+
+normalize(this.brandTrust)
+
+
+];
+
+
+
+let total =
+values.reduce(
+(sum,v)=>sum+v,
+0
+);
+
+
+
+return Math.max(
+
+0,
+
+Math.min(
+
+1,
+
+total/values.length
+
+)
+
+);
+
+
+}
 
 
 }

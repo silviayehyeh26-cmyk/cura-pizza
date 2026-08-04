@@ -122,6 +122,7 @@ evaluation.length
 
 
 
+
         // ============================
         // Step 3
         // Select
@@ -137,18 +138,87 @@ time:
 Date.now()
 
 });
-        let result =
-        evaluation[0];
 
-agent.decisionHistory.push({
+let result =
+evaluation[0];
 
-action:
-"decision_complete",
 
-time:
-Date.now()
+// ===============================
+// Decision Diversity
+// Agent Personality Effect
+// ===============================
 
-});
+
+let style =
+agent.decisionStyle;
+
+
+
+let confidence =
+Math.max(
+0,
+Math.min(
+1,
+result.score / 40
+)
+);
+
+
+
+if(style==="fast"){
+
+
+confidence =
+Math.min(
+1,
+confidence + 0.2
+);
+
+
+cognitiveLoad =
+Math.max(
+0,
+cognitiveLoad - 0.2
+);
+
+
+}
+
+
+
+if(style==="explorer"){
+
+
+confidence =
+Math.max(
+0,
+confidence - 0.1
+);
+
+
+cognitiveLoad =
+cognitiveLoad + 0.2;
+
+
+}
+
+
+
+if(style==="careful"){
+
+
+cognitiveLoad =
+cognitiveLoad + 0.3;
+
+
+confidence =
+Math.min(
+1,
+confidence + 0.1
+);
+
+
+}
 
         // ============================
         // Step 4
@@ -182,7 +252,7 @@ Date.now()
 
 
 
-       return {
+return {
 
 
 choice:
@@ -190,16 +260,17 @@ result.name,
 
 
 cognitiveLoad:
-cognitiveLoad,
+Number(
+Math.min(
+1,
+cognitiveLoad
+).toFixed(2)
+),
 
 
 confidence:
-Math.max(
-0,
-Math.min(
-1,
-result.score / 40
-)
+Number(
+confidence.toFixed(2)
 ),
 
 

@@ -5,11 +5,16 @@ Journey Engine
 
 AI Behavior Lab
 
-v3.1
+v5.0
 
-Agent Life Cycle System
+Customer Life Cycle System
 
-代理人旅程系統
+負責:
+- Customer Flow
+- Target Assignment
+- Order Waiting
+- Dining Process
+- Completion
 
 ================================
 */
@@ -22,101 +27,29 @@ export class JourneyEngine {
 constructor(){
 
 
-    this.states=[
-
-        "Entering",
-
-        "Exploring",
-
-        "Viewing_Menu",
-
-        "AI_Assisted",
-
-        "Ordering",
-
-        "Dining",
-
-        "Feedback",
-
-        "Completed"
-
-    ];
+this.states=[
 
 
+"Entering",
 
-}
+"Exploring",
 
+"Viewing_Menu",
 
+"Ordering",
 
+"Waiting_Food",
 
+"Dining",
 
-/*
-================================
+"Feedback",
 
-Initialize Journey
+"Leaving",
 
-================================
-*/
-
-
-initialize(agent,restaurantWorld){
-
-
-
-    let entrance =
-    restaurantWorld.getObject(
-        "entrance"
-    );
+"Completed"
 
 
-
-    agent.journey={
-
-
-        state:"Entering",
-
-
-        target:
-        entrance
-        ?
-        entrance.position
-        :
-        {
-            x:2500,
-            y:2500
-        },
-
-
-        history:[
-
-            {
-
-                state:"Entering",
-
-                time:0
-
-            }
-
-        ]
-
-
-    };
-
-
-
-
-    agent.velocity={
-
-        x:0,
-
-        y:0
-
-    };
-
-
-
-    agent.speed=50;
-
+];
 
 
 }
@@ -125,92 +58,84 @@ initialize(agent,restaurantWorld){
 
 
 
-/*
-================================
-
-Update
-
-================================
-*/
-
-
-update(agent,restaurantWorld){
 
 
 
-    if(
-        !agent ||
-        !agent.journey
-    ){
+initialize(
+agent,
+restaurantWorld
+){
 
-        return;
 
-    }
+
+let tables =
+restaurantWorld.getTables();
+
+
+
+agent.assignedTable =
+Math.floor(
+Math.random()*tables.length
+);
 
 
 
 
-    if(
-        agent.journey.state==="Completed"
-    ){
-
-        return;
-
-    }
+// =====================
+// Order System
+// =====================
 
 
+agent.order={
 
+placed:false,
 
-    let target =
-    this.getTarget(
+foodReady:false,
 
-        agent.journey.state,
+delivered:false
 
-        restaurantWorld
-
-    );
+};
 
 
 
+// =====================
+// Dining Timer
+// =====================
 
 
-    if(target){
-
-
-        agent.journey.target =
-        target;
-
-
-    }
+agent.diningTime=0;
 
 
 
+agent.journey={
 
 
-    if(
-        !agent.journey.target
-    ){
-
-        return;
-
-    }
+state:"Entering",
 
 
 
+target:
 
-    this.moveAgent(agent);
+restaurantWorld
+.getObject("entrance")
+.position,
 
 
 
+history:[
 
-    if(
-        this.reachTarget(agent)
-    ){
+{
 
-        this.nextState(agent);
+state:"Entering",
 
-    }
+time:Date.now()
 
+}
+
+]
+
+
+};
 
 
 
@@ -221,100 +146,506 @@ update(agent,restaurantWorld){
 
 
 
-/*
-================================
-
-Movement
-
-================================
-*/
-
-
-moveAgent(agent){
 
 
 
-    let target =
-    agent.journey.target;
+update(
+agent,
+restaurantWorld
+){
 
 
 
-    if(
-        !target ||
-        !agent.position
-    ){
+if(
+!agent ||
+!agent.journey
+)
 
-        return;
-
-    }
+return;
 
 
 
+if(
+agent.completed
+)
 
-    let dx =
-    target.x -
-    agent.position.x;
-
-
-
-    let dy =
-    target.y -
-    agent.position.y;
-
-
-
-    let distance =
-    Math.sqrt(
-
-        dx*dx+
-        dy*dy
-
-    );
-
-
-
-    if(distance===0)
-
-    return;
+return;
 
 
 
 
 
-    agent.velocity.x =
-    dx/distance;
-
-
-
-    agent.velocity.y =
-    dy/distance;
+let state =
+agent.journey.state;
 
 
 
 
-    agent.position.x +=
 
-    agent.velocity.x *
-
-    agent.speed;
+switch(state){
 
 
 
-    agent.position.y +=
+// =====================
+// 進入餐廳
+// =====================
 
-    agent.velocity.y *
 
-    agent.speed;
+case "Entering":
 
-    console.log(
+
+this.moveAgent(agent);
+
+
+if(
+this.reachTarget(agent)
+){
+
+
+this.changeState(
+
+agent,
+
+"Exploring",
+
+restaurantWorld
+
+);
+
+
+}
+
+
+break;
+
+
+
+
+
+
+
+
+// =====================
+// 探索環境
+// =====================
+
+
+case "Exploring":
+
+
+this.moveAgent(agent);
+
+
+
+if(
+this.reachTarget(agent)
+){
+
+
+this.changeState(
+
+agent,
+
+"Viewing_Menu",
+
+restaurantWorld
+
+);
+
+
+}
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 看菜單
+// =====================
+
+
+case "Viewing_Menu":
+
+
+
+this.moveAgent(agent);
+
+
+
+if(
+this.reachTarget(agent)
+){
+
+
+this.changeState(
+
+agent,
+
+"Ordering",
+
+restaurantWorld
+
+);
+
+
+}
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 點餐
+// =====================
+
+
+case "Ordering":
+
+
+
+this.moveAgent(agent);
+
+
+
+if(
+this.reachTarget(agent)
+){
+
+
+
+// 建立訂單
+
+agent.order.placed=true;
+
+
+
+console.log(
+
 agent.id,
-agent.position
+
+"Order Placed"
+
+);
+
+
+
+this.changeState(
+
+agent,
+
+"Waiting_Food",
+
+restaurantWorld
+
+);
+
+
+
+}
+
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 等待餐點
+// 不移動
+// =====================
+
+
+case "Waiting_Food":
+
+
+
+// 暫時模擬出餐
+// 後續交給 Kitchen Engine
+
+
+if(
+Math.random()<0.01
+){
+
+
+agent.order.foodReady=true;
+
+
+}
+
+
+
+if(
+agent.order.foodReady
+){
+
+
+
+agent.order.delivered=true;
+
+
+this.changeState(
+
+agent,
+
+"Dining",
+
+restaurantWorld
+
+);
+
+
+
+}
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 用餐
+// =====================
+
+
+case "Dining":
+
+
+
+agent.diningTime++;
+
+
+
+if(
+agent.diningTime>100
+){
+
+
+
+this.changeState(
+
+agent,
+
+"Feedback",
+
+restaurantWorld
+
+);
+
+
+
+}
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 回饋
+// =====================
+
+
+case "Feedback":
+
+
+
+this.changeState(
+
+agent,
+
+"Leaving",
+
+restaurantWorld
+
+);
+
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 離開
+// =====================
+
+
+case "Leaving":
+
+
+
+this.moveAgent(agent);
+
+
+
+if(
+this.reachTarget(agent)
+){
+
+
+this.changeState(
+
+agent,
+
+"Completed",
+
+restaurantWorld
+
+);
+
+
+
+}
+
+
+
+break;
+
+
+
+
+
+
+
+
+
+// =====================
+// 完成
+// =====================
+
+case "Completed":
+
+agent.completed=true;
+
+agent.velocity={
+x:0,
+y:0
+};
+
+break;
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+changeState(
+
+agent,
+
+next,
+
+world
+
+){
+
+
+
+let old =
+agent.journey.state;
+
+
+
+agent.journey.state =
+next;
+
+
+
+console.log(
+
+"JOURNEY",
+
+agent.id,
+
+old,
+
+"→",
+
+next
+
 );
 
 
 
 
 
+agent.journey.target =
+
+this.getTarget(
+
+agent,
+
+next,
+
+world
+
+);
+
+
+
+
+
+agent.journey.history.push({
+
+state:next,
+
+time:Date.now()
+
+});
+
+
+
 }
 
 
@@ -322,122 +653,228 @@ agent.position
 
 
 
-/*
-================================
 
-Check Arrival
+getTarget(agent,state,world){
 
-================================
-*/
+
+switch(state){
+
+
+case "Entering":
+
+
+return world
+.getObject("counter")
+.position;
+
+
+
+case "Exploring":
+
+
+return {
+
+x:
+2400 + (Math.random()-0.5)*800,
+
+y:
+2300 + (Math.random()-0.5)*800
+
+};
+
+
+
+case "Viewing_Menu":
+
+
+return this.randomPointAround(
+
+world
+.getTables()[agent.assignedTable]
+.position
+
+);
+
+
+
+case "Ordering":
+
+
+return world
+.getObject("counter")
+.position;
+
+
+
+case "Waiting_Food":
+
+
+return world
+.getTables()[agent.assignedTable]
+.position;
+
+
+
+case "Dining":
+
+
+return world
+.getTables()[agent.assignedTable]
+.position;
+
+
+
+case "Feedback":
+
+
+return world
+.getTables()[agent.assignedTable]
+.position;
+
+
+
+case "Leaving":
+
+
+return world
+.getObject("exit")
+.position;
+
+
+
+case "Completed":
+
+
+return null;
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+moveAgent(agent){
+
+
+
+let target =
+agent.journey.target;
+
+
+
+if(!target)
+return;
+
+
+
+let dx =
+target.x-agent.position.x;
+
+
+let dy =
+target.y-agent.position.y;
+
+
+
+let distance =
+
+Math.sqrt(
+
+dx*dx+
+
+dy*dy
+
+);
+
+
+
+
+if(distance<1)
+return;
+
+
+
+let speed = 3;
+
+
+
+agent.position.x +=
+
+(dx/distance)
+*
+speed;
+
+
+
+agent.position.y +=
+
+(dy/distance)
+*
+speed;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 reachTarget(agent){
 
 
 
-    if(
-        !agent.journey ||
-        !agent.journey.target
-    ){
-
-        return false;
-
-    }
+let target =
+agent.journey.target;
 
 
 
-    let target =
-    agent.journey.target;
+if(!target)
+return true;
 
 
 
-    let dx =
-    target.x -
-    agent.position.x;
+let dx =
+target.x-agent.position.x;
 
 
 
-    let dy =
-    target.y -
-    agent.position.y;
+let dy =
+target.y-agent.position.y;
 
 
 
-    let distance =
-    Math.sqrt(
+return (
 
-        dx*dx+
-        dy*dy
+Math.sqrt(
 
-    );
+dx*dx+
 
+dy*dy
 
+)
 
-    return distance < 30;
+<50
 
-
-
-}
-
-
-
-
-
-/*
-================================
-
-State Transition
-
-================================
-*/
-
-
-nextState(agent){
-
-
-
-    let current =
-    agent.journey.state;
-
-
-
-    let index =
-    this.states.indexOf(
-        current
-    );
-
-
-
-
-    if(
-        index <
-        this.states.length-1
-    ){
-
-
-
-        let next =
-        this.states[index+1];
-
-
-
-        agent.journey.state =
-        next;
-
-
-
-
-        agent.journey.history.push({
-
-            state:next,
-
-            time:Date.now()
-
-        });
-
-
-
-    }
+);
 
 
 
@@ -448,120 +885,45 @@ nextState(agent){
 
 
 
-/*
-================================
 
-Target Mapping
 
-================================
-*/
 
 
-getTarget(state,world){
 
 
+randomPointAround(position){
 
-    switch(state){
 
 
+let radius=150;
 
-        case "Entering":
 
 
-            return world.getObject(
-                "entrance"
-            )?.position;
+return {
 
 
+x:
 
-        case "Exploring":
+position.x+
 
+(Math.random()-0.5)
+*
+radius,
 
-            return world.getObject(
-                "counter"
-            )?.position;
 
 
+y:
 
+position.y+
 
-        case "Viewing_Menu":
+(Math.random()-0.5)
+*
+radius
 
 
-            return world.getTables()?.[0]?.position;
 
+};
 
-
-
-        case "AI_Assisted":
-
-
-            return world.getObject(
-                "counter"
-            )?.position;
-
-
-
-
-        case "Ordering":
-
-
-            return world.getObject(
-                "counter"
-            )?.position;
-
-
-
-
-        case "Dining":
-
-
-            return world.getTables()?.[2]?.position;
-
-
-
-
-        case "Feedback":
-
-
-            return world.getObject(
-                "exit"
-            )?.position;
-
-
-
-
-        case "Completed":
-
-
-            return null;
-
-
-
-        default:
-
-
-            return null;
-
-
-    }
-
-
-
-}
-
-
-
-
-
-getState(agent){
-
-
-    if(!agent.journey)
-
-    return null;
-
-
-    return agent.journey.state;
 
 
 }

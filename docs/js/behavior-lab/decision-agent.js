@@ -38,7 +38,9 @@ export class DecisionAgent{
     // ============================
 
     this.priceSensitivity =
-    profile.behavior.priceSensitivity;
+profile.behavior.priceSensitivity
+||
+Math.random();
 
 
 
@@ -48,7 +50,9 @@ export class DecisionAgent{
 
 
     this.curiosity =
-    profile.behavior.newExperience;
+profile.behavior.newExperience
+||
+Math.random();
 
 
 
@@ -123,7 +127,16 @@ this.velocity = {
     y: 0
 };
 
-this.speed = 2;
+this.speed =
+50 +
+Math.random()*2;
+
+this.startDelay =
+Math.floor(
+Math.random()*200
+);
+
+
 
 
 }

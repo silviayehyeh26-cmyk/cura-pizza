@@ -76,15 +76,96 @@ JourneyEngine
 }
 from "./journey-engine.js";
 
+import {
+BehaviorMatrixEngine
+}
+from "./behavior-matrix-engine.js";
+
+import {
+CollisionEngine
+}
+from "./collision-engine.js";
+
+import {
+NavigationEngine
+}
+from "./navigation-engine.js";
+
+import {
+EventEngine
+}
+from "./event-engine.js";
+
+import {
+TimelineEngine
+}
+from "./timeline-engine.js";
+
+import {
+BehaviorAnalyzer
+}
+from "./behavior-analyzer.js";
+
+import {
+PatternMiningEngine
+}
+from "./pattern-mining-engine.js";
+
+import {
+DecisionInsightEngine
+}
+from "./decision-insight-engine.js";
+
+import {
+InsightDashboard
+}
+from "./insight-dashboard.js";
+
+
+
+let eventEngine =
+new EventEngine();
+
+window.eventEngine =
+eventEngine;
+
+let timelineEngine =
+new TimelineEngine();
+
+window.timelineEngine =
+timelineEngine;
 
 let timeline =
 new BehaviorTimeline();
+
+let analyzer =
+new BehaviorAnalyzer();
+
+window.analyzer =
+analyzer;
 
 const canvas =
 document.getElementById(
 "behaviorCanvas"
 );
 
+let patternMining =
+new PatternMiningEngine();
+
+window.patternMining =
+patternMining;
+
+const insightDashboard =
+
+new InsightDashboard(
+
+"insight-container"
+
+);
+
+
+window.insightDashboard =
+insightDashboard;
 
 let visualization =
 new VisualizationEngine(
@@ -96,8 +177,15 @@ new RestaurantWorld(
 visualization.world
 );
 
+const insightEngine =
+new DecisionInsightEngine();
+
+window.insightEngine =
+insightEngine;
 
 restaurantWorld.initialize();
+
+
 
 
 window.restaurantWorld =
@@ -400,6 +488,19 @@ new StateTransitionEngine();
 let journey =
 new JourneyEngine();
 
+let behaviorMatrix =
+new BehaviorMatrixEngine();
+
+
+window.behaviorMatrix =
+behaviorMatrix;
+
+let navigation =
+new NavigationEngine();
+
+let collision =
+new CollisionEngine();
+
 
 window.journey =
 journey;
@@ -442,6 +543,10 @@ new ExperimentManager();
 window.experimentManager =
 experimentManager;
 
+experimentManager.initialize();
+
+experimentManager.setCurrent("normal");
+
 let compareEngine =
 new CompareEngine();
 
@@ -473,27 +578,49 @@ simulationAgents;
     agents
 );
 
-simulationManager.initialize(
-    agents
-);
+
 
 
 
 agents.forEach(agent=>{
 
 
+    /*
+    =========================
+    Spawn Position
+    避免全部重疊出生
+    =========================
+    */
+
+
     const pos =
-visualization.world.randomPosition();
-
-agent.position = {
-    x: pos.x,
-    y: pos.y
-};
+    visualization.world.randomPosition();
 
 
 
-   
+    agent.position = {
 
+        x:pos.x,
+
+        y:pos.y
+
+    };
+
+
+
+    agent.velocity={
+
+        x:0,
+
+        y:0
+
+    };
+
+
+
+    /*
+    初始化 Journey
+    */
 
 
     journey.initialize(
@@ -502,17 +629,49 @@ agent.position = {
 
         restaurantWorld
 
-        
-
     );
+
 
 
 });
 
 
-
 agentStates =
-simulationManager.agentStates;
+agents.map(agent=>{
+
+
+let state =
+new AgentState(
+
+    agent,
+
+    {
+        choice:"Waiting",
+        confidence:0,
+        cognitiveLoad:0
+    },
+
+    0,
+
+    scenarioManager.getScenario()
+
+);
+
+
+
+state.position.x =
+agent.position.x;
+
+
+state.position.y =
+agent.position.y;
+
+
+
+return state;
+
+
+});
 
 
 
@@ -522,6 +681,20 @@ agentStates;
 simulationManager.onUpdate =
 (results)=>{
 
+console.log(
+agentStates[0].shape,
+agentStates[0].status
+);
+
+console.log(
+agentStates[0].behaviorIntensity
+);
+/*
+=========================
+1. 狀態轉換
+=========================
+*/
+
 
 stateTransition.update(
 agentStates
@@ -529,42 +702,89 @@ agentStates
 
 
 
+
+
+/*
+=========================
+2. Journey Movement
+=========================
+*/
+collision.update(
+agentStates
+);
+
 simulationAgents.forEach(agent=>{
 
+
+
     journey.update(
-        agent,
-        restaurantWorld
-    );
+agent,
+restaurantWorld,
+behaviorMatrix
+);
 
-  
 
-    const state =
+
+
+    let state =
+
     agentStates.find(
-        s => s.id === agent.id
+
+        s=>s.id===agent.id
+
     );
 
-    if(state){
 
-        state.position = {
-            x: agent.position.x,
-            y: agent.position.y
-        };
 
-        state.status =
-        agent.journey.state;
+if(state){
 
-    }
+
+state.position.x =
+agent.position.x;
+
+
+state.position.y =
+agent.position.y;
+
+
+state.status =
+agent.journey.state;
+
+
+state.shape =
+state.generateShape(agent);
+
+
+state.intensity =
+agent.intensity || 0.5;
+
+
+}
+
+
 
 });
 
-console.log(
-"RENDER FIRST",
-agentStates[0]
-);
+
+
+
+
+
+
+/*
+=========================
+3. Render
+=========================
+*/
+
 
 visualization.render(
+
 agentStates
+
 );
+
+
 
 
 
@@ -573,9 +793,11 @@ results
 );
 
 
+
 dashboard.updateMetrics(
 results
 );
+
 
 
 dataCollector.collect(
@@ -586,14 +808,105 @@ results
 
 };
 
-simulationManager.onComplete =
-(results)=>{
+simulationManager.onComplete=(results)=>{
 
+    const exp=
+    experimentManager.getCurrent();
 
-    experimentManager.collectResult(
+    experimentManager.saveResult(
+
+        exp.id,
+
         results
+
     );
 
+    if(exp.id==="normal"){
+
+    compareEngine.setNormal(results);
+
+}else{
+
+    compareEngine.setAI(results);
+
+}
+
+window.lastCompare =
+compareEngine.compare();
+
+console.log(
+"Compare Result:",
+window.lastCompare
+);
+
+    console.log(
+
+        "Experiment Finished",
+
+        exp.id
+
+    );
+
+    const timelineData =
+timelineEngine.getTimeline();
+
+
+console.log(
+"Timeline Size:",
+timelineData.length
+);
+
+
+
+const report =
+analyzer.analyze(
+    timelineData
+);
+
+
+
+console.log(
+"Behavior Report:",
+report
+);
+
+
+
+const patterns =
+patternMining.mine(
+    timelineData.slice(-5000)
+);
+
+console.log(
+"PATTERN CHECK",
+patterns
+);
+
+
+
+const compareResult =
+compareEngine.compare();
+
+const insights =
+insightEngine.generate(
+
+    compareResult,
+
+    report,
+
+    patterns
+
+);
+
+window.lastInsights = insights;
+
+console.log(
+    "INSIGHTS SAVED"
+);
+
+insightDashboard.render(
+    insights
+);
 
 };
 
@@ -665,11 +978,17 @@ document
 if(simulation.agents===0){
 
     initializeAgents();
- simulationManager.setScenario(
+const currentExperiment =
+experimentManager.getCurrent();
 
-    scenarioManager.getScenario()
+simulationManager.setScenario({
 
-);
+    ...scenarioManager.getScenario(),
+
+    aiAssist:
+    currentExperiment.aiAssist
+
+});
 
 
 simulationManager.start(
@@ -679,6 +998,8 @@ simulationManager.start(
     simulationMenu
 
 );
+
+
  
 
 }

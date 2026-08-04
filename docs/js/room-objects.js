@@ -30,7 +30,7 @@ addCollider
 const cabinetMaterial =
 new THREE.MeshStandardMaterial({
 
-color:0x4b2f1f
+color:0x6b4630
 
 });
 
@@ -65,7 +65,15 @@ cabinet.position.set(
 
 );
 
+cabinet.userData={
 
+interactable:true,
+
+type:"memory-object",
+
+id:"old-cabinet"
+
+};
 
 scene.add(cabinet);
 

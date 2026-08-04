@@ -50,12 +50,11 @@ return;
 
 
 title.textContent =
-data.name;
-
+data.title;
 
 
 content.textContent =
-data.memory;
+data.description;
 
 
 

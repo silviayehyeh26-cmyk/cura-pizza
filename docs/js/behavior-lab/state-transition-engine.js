@@ -101,13 +101,22 @@ probability
 
 
 
+// 如果 Agent 已經由 Journey 控制
+// 不覆蓋 Journey 狀態
+
+if(
+agent.journey
+){
+
+return;
+
+}
+
 let possible =
 
 this.transitions[
 agent.status
 ];
-
-
 
 if(possible){
 

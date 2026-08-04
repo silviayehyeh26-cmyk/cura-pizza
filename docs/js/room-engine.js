@@ -84,6 +84,10 @@ initInteraction
 from "./interaction-system.js";
 
 
+
+import "./gallery-menu.js";
+
+
 // =============================
 // Container
 // =============================
@@ -110,7 +114,7 @@ new THREE.Scene();
 
 scene.background =
 new THREE.Color(
-0x111111
+0xc8b8a6
 );
 
 
@@ -214,12 +218,11 @@ renderer.domElement
 const ambient =
 new THREE.AmbientLight(
 
-0xffffff,
+0xffe8c7,
 
-1
+1.8
 
 );
-
 
 scene.add(
 ambient
@@ -233,9 +236,9 @@ ambient
 const lamp =
 new THREE.DirectionalLight(
 
-0xffd8aa,
+0xffc982,
 
-2
+3
 
 );
 
@@ -280,7 +283,9 @@ function createRoom(){
 const wallMaterial =
 new THREE.MeshStandardMaterial({
 
-color:0x76543a,
+color:0xc7ad91,
+
+roughness:0.9,
 
 side:
 THREE.DoubleSide
@@ -546,9 +551,9 @@ addCollider
 
 );
 
-createGalleryEntrances(
-scene
-);
+// createGalleryEntrances(
+// scene
+// );
 
 
 

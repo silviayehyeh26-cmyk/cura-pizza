@@ -149,9 +149,9 @@ y:2500
 
 size:{
 
-width:200,
+width:400,
 
-height:300
+height:600
 
 }
 
@@ -202,7 +202,7 @@ position:{
 x:1000,
 
 
-y:2500
+y:2000
 
 
 },
@@ -214,7 +214,7 @@ size:{
 
 width:400,
 
-height:200
+height:800
 
 }
 
@@ -277,9 +277,9 @@ y:2500
 size:{
 
 
-width:600,
+width:1000,
 
-height:800
+height:1600
 
 }
 
@@ -378,10 +378,10 @@ y:pos[1]
 size:{
 
 
-width:250,
+width:500,
 
 
-height:250
+height:500
 
 
 }
@@ -439,10 +439,10 @@ type:"exit",
 position:{
 
 
-x:4500,
+x:500,
 
 
-y:2500
+y:3200
 
 
 },

@@ -1,10 +1,3 @@
-import {
-AgentState
-}
-from "./agent-state.js";
-
-
-
 /*
 ================================
 
@@ -12,10 +5,21 @@ Simulation Manager
 
 AI Behavior Lab
 
-v3.1
+v3.2
+
+Simulation Controller
 
 ================================
 */
+
+
+import {
+AgentState
+}
+from "./agent-state.js";
+
+
+
 
 
 class SimulationManager {
@@ -25,37 +29,42 @@ class SimulationManager {
 constructor(){
 
 
-    this.running=false;
+
+this.running=false;
 
 
-    this.timeStep=0;
+this.timeStep=0;
 
 
-    this.agents=[];
+this.agents=[];
 
 
-    this.results=[];
+this.results=[];
 
 
-    this.agentStates=[];
+this.agentStates=[];
 
 
-    this.onUpdate=null;
+this.onUpdate=null;
 
 
-    this.scenario=null;
+this.onComplete=null;
 
 
-    this.maxSteps=1000;
+this.scenario=null;
 
 
-    this.currentStep=0;
+this.maxSteps=9000;
 
 
-    this.onComplete=null;
+this.currentStep=0;
+
 
 
 }
+
+
+
 
 
 
@@ -66,60 +75,77 @@ initialize(agents){
 
 
 
-    this.agents =
-    agents;
+this.agents =
+agents;
 
 
 
-    this.timeStep=0;
+this.timeStep=0;
 
 
-
-    this.agentStates =
-
-    agents.map(agent=>{
-
-
-        return new AgentState(
-
-            agent,
-
-            {
-
-                choice:"Waiting",
-
-                confidence:0,
-
-                cognitiveLoad:0
-
-            },
-
-            0,
-
-            this.scenario
-
-        );
-
-
-    });
+this.currentStep=0;
 
 
 
 
+this.agentStates =
 
-    console.log(
 
-        "Simulation Initialized:",
+agents.map(agent=>{
 
-        this.agents.length,
 
-        "Agents"
+return new AgentState(
 
-    );
+
+agent,
+
+
+{
+
+
+choice:"Waiting",
+
+
+confidence:0,
+
+
+cognitiveLoad:0
+
+
+},
+
+
+0,
+
+
+this.scenario
+
+
+);
+
+
+
+});
+
+
+
+
+console.log(
+
+"Simulation Initialized:",
+
+this.agentStates.length,
+
+"Agents"
+
+);
 
 
 
 }
+
+
+
 
 
 
@@ -130,21 +156,28 @@ start(engine,menu){
 
 
 
-    this.running=true;
+this.running=true;
 
 
-    this.currentStep=0;
+this.currentStep=0;
 
 
 
-    this.loop(
-        engine,
-        menu
-    );
+this.loop(
+
+engine,
+
+menu
+
+);
 
 
 
 }
+
+
+
+
 
 
 
@@ -154,73 +187,83 @@ loop(engine,menu){
 
 
 
-    if(!this.running)
+if(!this.running)
 
-    return;
-
-
-
-    if(
-        this.currentStep >=
-        this.maxSteps
-    ){
+return;
 
 
 
-        this.running=false;
+if(
+
+this.currentStep >=
+
+this.maxSteps
+
+){
 
 
 
-        if(this.onComplete){
-
-            this.onComplete(
-                this.results
-            );
-
-        }
-
-
-        return;
-
-
-    }
+this.running=false;
 
 
 
+if(this.onComplete){
 
-    this.currentStep++;
+this.onComplete(
+this.results
+);
 
-
-
-    this.runStep(
-
-        engine,
-
-        menu
-
-    );
+}
 
 
 
-
-
-    setTimeout(()=>{
-
-
-        this.loop(
-
-            engine,
-
-            menu
-
-        );
-
-
-    },500);
+return;
 
 
 
 }
+
+
+
+
+
+this.currentStep++;
+
+
+
+this.runStep(
+
+engine,
+
+menu
+
+);
+
+
+
+
+
+setTimeout(()=>{
+
+
+this.loop(
+
+engine,
+
+menu
+
+);
+
+
+
+},5);
+
+
+
+}
+
+
+
 
 
 
@@ -231,95 +274,115 @@ runStep(engine,menu){
 
 
 
-    this.timeStep++;
+this.timeStep++;
 
 
 
-    this.results=[];
-
-
-
-
-    this.agents.forEach(
-
-    (agent,index)=>{
-
-
-
-        let result =
-
-        engine.processDecision(
-
-            agent,
-
-            menu,
-
-            this.scenario
-
-        );
-
-
-
-
-        let state =
-
-        this.agentStates[index];
+this.results=[];
 
 
 
 
 
-        state.choice =
-        result.choice;
+this.agents.forEach(
 
-
-
-        state.confidence =
-        result.confidence;
-
-
-
-        state.cognitiveLoad =
-        result.cognitiveLoad;
-
-
-
-        state.status =
-        state.generateStatus(
-            agent
-        );
-
-
-
-
-        this.results.push(
-            state
-        );
-
-
-
-    });
+(agent,index)=>{
 
 
 
 
 
+let result =
 
-    if(this.onUpdate){
+engine.processDecision(
+
+agent,
+
+menu,
+
+this.scenario
+
+);
 
 
-        this.onUpdate(
-
-            this.agentStates
-
-        );
 
 
-    }
+
+let state =
+
+this.agentStates[index];
+
+
+
+
+
+state.choice =
+
+result.choice;
+
+
+
+state.confidence =
+
+result.confidence;
+
+
+
+state.cognitiveLoad =
+
+result.cognitiveLoad;
+
+
+
+
+/*
+=========================
+同步真實 Agent
+=========================
+*/
+
+
+state.sync();
+
+
+
+
+this.results.push(
+
+state
+
+);
+
+
+
+
+});
+
+
+
+
+
+
+if(this.onUpdate){
+
+
+
+this.onUpdate(
+
+this.agentStates
+
+);
 
 
 
 }
+
+
+
+}
+
+
+
 
 
 
@@ -329,10 +392,15 @@ runStep(engine,menu){
 setScenario(scenario){
 
 
-    this.scenario=scenario;
+
+this.scenario=scenario;
+
 
 
 }
+
+
+
 
 
 
@@ -342,10 +410,13 @@ setScenario(scenario){
 pause(){
 
 
-    this.running=false;
+this.running=false;
 
 
 }
+
+
+
 
 
 
@@ -355,16 +426,24 @@ pause(){
 reset(){
 
 
-    this.running=false;
+this.running=false;
 
 
-    this.timeStep=0;
+this.timeStep=0;
 
 
-    this.results=[];
+this.currentStep=0;
 
 
-    this.agentStates=[];
+this.results=[];
+
+
+this.agentStates=[];
+
+
+}
+
+
 
 
 
@@ -372,8 +451,6 @@ reset(){
 
 
 
-
-}
 
 
 

@@ -23,6 +23,21 @@ galleryData
 
 from "./gallery-data.js";
 
+import {
+
+memoryData
+
+}
+
+from "../data/memory-data.js";
+
+import {
+
+openMemory
+
+}
+
+from "./memory-ui.js";
 
 import {
 
@@ -330,7 +345,24 @@ return;
 
 }
 
+if(
 
+data.type === "memory-object"
+
+){
+
+
+openMemory(
+
+memoryData[data.id]
+
+);
+
+
+return;
+
+
+}
 
 
 console.log(

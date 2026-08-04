@@ -2,16 +2,16 @@
 ================================
 CURA Player Controller
 
-Version 2.1
+Version 3.0
 
-FPS Movement System
-
-Based on Three.js PointerLockControls
+Stable FPS Movement
 
 Features:
 - Mouse Look
 - WASD Movement
-- Collision Restore
+- Stable Collision
+- Debug Friendly
+
 ================================
 */
 
@@ -41,20 +41,21 @@ from "./collision-system.js";
 
 
 
+
 // ==============================
-// Keyboard State
+// Keyboard
 // ==============================
 
 
 const keys = {
 
-    KeyW:false,
+KeyW:false,
 
-    KeyA:false,
+KeyA:false,
 
-    KeyS:false,
+KeyS:false,
 
-    KeyD:false
+KeyD:false
 
 };
 
@@ -77,265 +78,318 @@ renderer
 
 
 
-    const controls =
-    new PointerLockControls(
+const controls =
+new PointerLockControls(
 
-        camera,
+camera,
 
-        renderer.domElement
+renderer.domElement
 
-    );
+);
 
 
 
 
 
+// ==============================
+// Start Position
+// ==============================
 
-    // ==========================
-    // Pointer Lock
-    // ==========================
 
+camera.position.set(
 
-    renderer.domElement.addEventListener(
+0,
 
-        "click",
+1.6,
 
-        ()=>{
+2.5
 
-            controls.lock();
+);
 
-        }
 
-    );
 
 
 
 
+// ==============================
+// Pointer Lock
+// ==============================
 
 
+renderer.domElement.addEventListener(
 
-    // ==========================
-    // Keyboard
-    // ==========================
+"click",
 
+()=>{
 
-    window.addEventListener(
 
-        "keydown",
+controls.lock();
 
-        (event)=>{
 
+}
 
-            if(
-                keys[event.code] !== undefined
-            ){
+);
 
-                keys[event.code]=true;
 
-            }
 
 
-        }
 
-    );
+controls.addEventListener(
 
+"lock",
 
+()=>{
 
 
+console.log(
+"CURA FPS Locked"
+);
 
-    window.addEventListener(
 
-        "keyup",
+}
 
-        (event)=>{
+);
 
 
-            if(
-                keys[event.code] !== undefined
-            ){
 
-                keys[event.code]=false;
 
-            }
+controls.addEventListener(
 
+"unlock",
 
-        }
+()=>{
 
-    );
 
+console.log(
+"CURA FPS Unlocked"
+);
 
 
+}
 
+);
 
 
 
 
-    // ==========================
-    // Movement
-    // ==========================
 
 
-    const speed =
-    0.08;
 
 
+// ==============================
+// Keyboard
+// ==============================
 
-    function update(){
 
+window.addEventListener(
 
+"keydown",
 
-        if(
-            !controls.isLocked
-        ){
+(e)=>{
 
-            return;
 
-        }
+if(keys[e.code] !== undefined){
 
 
+keys[e.code]=true;
 
 
+}
 
-        const oldPosition =
-        camera.position.clone();
 
+}
 
+);
 
 
 
 
-        let moved = false;
 
+window.addEventListener(
 
+"keyup",
 
+(e)=>{
 
 
-        if(keys.KeyW){
+if(keys[e.code] !== undefined){
 
-            controls.moveForward(
 
-                speed
+keys[e.code]=false;
 
-            );
 
-            moved = true;
+}
 
-        }
 
+}
 
+);
 
 
 
-        if(keys.KeyS){
 
-            controls.moveForward(
 
-                -speed
 
-            );
 
-            moved = true;
 
-        }
 
+// ==============================
+// Movement
+// ==============================
 
 
+const speed = 0.12;
 
 
 
+function update(){
 
-        if(keys.KeyA){
 
-            controls.moveRight(
 
-                -speed
+if(!controls.isLocked){
 
-            );
+return;
 
-            moved = true;
+}
 
-        }
 
 
+const direction =
+new THREE.Vector3();
 
 
 
 
+if(keys.KeyW){
 
-        if(keys.KeyD){
+direction.z -= 1;
 
-            controls.moveRight(
+}
 
-                speed
 
-            );
+if(keys.KeyS){
 
-            moved = true;
+direction.z += 1;
 
-        }
+}
 
 
+if(keys.KeyA){
 
+direction.x -= 1;
 
+}
 
 
+if(keys.KeyD){
 
+direction.x += 1;
 
-        if(!moved){
+}
 
-            return;
 
-        }
 
 
+if(
+direction.length()===0
+){
 
+return;
 
+}
 
 
-        // ======================
-        // Collision Check
-        // ======================
 
+direction.normalize();
 
-        if(
 
-            checkPositionCollision(
 
-                camera.position
 
-            )
 
-        ){
+const move =
+direction.multiplyScalar(
+speed
+);
 
 
-            camera.position.copy(
 
-                oldPosition
 
-            );
 
+const old =
+camera.position.clone();
 
-        }
 
 
 
 
 
-    }
+// Horizontal Move
 
 
+controls.moveRight(
 
+move.x
 
+);
 
 
 
-    return {
+controls.moveForward(
 
-        controls,
+-move.z
 
-        update
+);
 
-    };
+
+
+
+
+
+
+// Collision
+
+
+if(
+
+checkPositionCollision(
+
+camera.position
+
+)
+
+){
+
+
+camera.position.copy(
+
+old
+
+);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+return {
+
+
+controls,
+
+
+update
+
+
+};
+
 
 
 }
