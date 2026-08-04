@@ -10,10 +10,10 @@ Camera + Studio Memory + AI NPC
 ================================
 */
 
-
 import {
 
-loadMemory
+loadMemory,
+saveMemory
 
 }
 
@@ -100,25 +100,100 @@ prompt(
 
 
 if(!name)
+
 return;
 
 
 
-console.log(
-"Create Memory Object:",
-name
-);
+const id =
+
+"memory-" + Date.now();
 
 
 
-alert(
-"物件綁定功能啟動：" + name
-);
+
+
+const object = {
+
+
+id:id,
+
+
+name:name,
+
+
+type:"家具",
+
+
+story:"尚未建立故事",
+
+
+guide:"Ari",
+
+
+style:"溫暖陪伴",
+
+
+collection:""
 
 
 
 };
 
+
+
+
+
+
+const memories =
+
+loadMemory()
+
+||
+
+{};
+
+
+
+
+
+memories[id] = object;
+
+
+
+
+
+saveMemory(
+
+memories
+
+);
+
+
+
+
+
+alert(
+
+"物件已綁定：" + name
+
+);
+
+
+
+
+
+console.log(
+
+"Created Memory Object",
+
+object
+
+);
+
+
+
+};
 
 }
 
