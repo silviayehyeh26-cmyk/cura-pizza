@@ -224,31 +224,39 @@ font-size:14px;
 
 .studio-main{
 
-
-flex:1;
-
-
 display:grid;
-
 
 grid-template-columns:
 
-240px
-
-1fr
-
-330px;
+260px minmax(400px,1fr) 360px;
 
 
+height:calc(100vh - 80px);
 
-height:calc(100vh - 70px);
+overflow-x:auto;
 
+overflow:hidden;
 
 }
 
 
+.sidebar,
+.editor,
+.preview{
 
+min-width:0;
 
+overflow-y:auto;
+
+overflow-x:auto;
+
+}
+
+.studio{
+
+min-width:1200px;
+
+}
 
 /* =====================
    Sidebar
@@ -937,5 +945,37 @@ transform:translateY(-2px);
 box-shadow:
 0 8px 20px rgba(0,0,0,.08);
 
+
+}
+
+/* =====================
+   Horizontal Scroll Fix
+===================== */
+
+
+html,
+body{
+
+width:100%;
+
+overflow-x:auto;
+
+}
+
+
+
+.studio{
+
+min-width:1200px;
+
+}
+
+
+
+.studio-main{
+
+min-width:1200px;
+
+overflow-x:auto;
 
 }

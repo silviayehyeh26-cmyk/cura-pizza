@@ -44,7 +44,11 @@ from "./ai/npc-ai-engine.js";
 // DOM
 // =====================
 
+const bindButton =
 
+document.getElementById(
+"bind-object"
+);
 const video =
 
 document.getElementById(
@@ -76,7 +80,47 @@ document.getElementById(
 );
 
 
+// =====================
+// Bind New Object
+// =====================
 
+
+if(bindButton){
+
+
+bindButton.onclick = ()=>{
+
+
+const name =
+
+prompt(
+"輸入物件名稱"
+);
+
+
+
+if(!name)
+return;
+
+
+
+console.log(
+"Create Memory Object:",
+name
+);
+
+
+
+alert(
+"物件綁定功能啟動：" + name
+);
+
+
+
+};
+
+
+}
 
 // =====================
 // State
