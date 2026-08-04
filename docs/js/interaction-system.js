@@ -33,6 +33,14 @@ from "../data/memory-data.js";
 
 import {
 
+getMemoryObjects
+
+}
+
+from "./storage/memory-storage.js";
+
+import {
+
 openMemory
 
 }
@@ -352,15 +360,24 @@ data.type === "memory-object"
 ){
 
 
+const objects = {
+
+...memoryData,
+
+...getMemoryObjects()
+
+};
+
+
+
 openMemory(
 
-memoryData[data.id]
+objects[data.id]
 
 );
 
 
 return;
-
 
 }
 
